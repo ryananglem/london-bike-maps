@@ -13,6 +13,12 @@ class App extends Component {
         <p className="App-intro">
           To get started, edit <code>src/App.js</code> and save to reload.
         </p>
+        <p>
+           Service URL being used is: {process.env.REACT_APP_TFL_SERVICE_URL}
+        </p>
+        <p>
+              You are running in: {process.env.NODE_ENV}
+        </p>
       </div>
     );
   }
