@@ -1,27 +1,13 @@
-import React, { Component } from 'react';
-import logo from './logo.svg';
+import React from 'react';
 import './App.css';
+import MapContainer from './containers/mapContainer'
 
-class App extends Component {
-  render() {
-    return (
+const App = (props) =>
       <div className="App">
         <div className="App-header">
-          <img src={logo} className="App-logo" alt="logo" />
-          <h2>Welcome to React</h2>
+          <h2>London Bike Maps</h2>
         </div>
-        <p className="App-intro">
-          To get started, edit <code>src/App.js</code> and save to reload.
-        </p>
-        <p>
-           Service URL being used is: {process.env.REACT_APP_TFL_SERVICE_URL}
-        </p>
-        <p>
-              You are running in: {process.env.NODE_ENV}
-        </p>
+        <MapContainer />
       </div>
-    );
-  }
-}
 
-export default App;
+export default App
