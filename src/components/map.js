@@ -1,7 +1,7 @@
 import React, { Component, PropTypes } from 'react';
 import ReactDOMServer from 'react-dom/server';
 
-import {Gmaps, InfoWindow , Marker } from 'react-gmaps';
+import {Gmaps, InfoWindow , Marker, Circle } from 'react-gmaps';
 import BikeIcon from '../content/images/cycle-hire-pushpin-icon.gif'
 import StationInfo from './stationInfo'
 
@@ -22,17 +22,13 @@ class Map extends Component {
             centre: centre
         };
     }
-
     toggleInfoWindow(index) {
         const {infoWindows} = this.state;
-        //const {centre} = map.centre;
         infoWindows[index] = !infoWindows[index];
         this.setState({
             infoWindows,
-          //  centre
         });
     }
-
     onMapCreated(map) {
         map.setOptions({
             disableDefaultUI: false
@@ -42,12 +38,16 @@ class Map extends Component {
         //console.log('onCloseClicked');
         this.toggleInfoWindow(index)
     }
-
     onMarkerClicked(index){
-        //console.log(event);
+        const newCentre = {
+            lat: this.props.stations[index-1].coords.lat,
+            lng: this.props.stations[index-1].coords.lng
+        };
+        this.setState({
+            centre: newCentre
+        });
         this.toggleInfoWindow(index)
     }
-
     renderStationMarkers() {
         return this.props.stations.map((station) => {
             return (
@@ -61,7 +61,6 @@ class Map extends Component {
             )
         });
     }
-
     renderStationInfoWindows() {
         const { infoWindows } = this.state;
         return this.props.stations.map((station) => {
@@ -69,7 +68,7 @@ class Map extends Component {
             let stationInfo = ReactDOMServer.renderToStaticMarkup(<StationInfo station={station} />);
             return (
                 <InfoWindow key={station.id}
-                            lat={station.coords.lat}
+                            lat={station.coords.lat + 0.001}
                             lng={station.coords.lng}
                             content={stationInfo}
                             draggable={false}
@@ -78,7 +77,6 @@ class Map extends Component {
             )
         });
     }
-
     render() {
         return (
                 <Gmaps
@@ -91,8 +89,20 @@ class Map extends Component {
                     params={{v: '3.exp', key:process.env.REACT_APP_GOOGLE_MAP_KEY}}
                     onMapCreated={this.onMapCreated}>
                     >
+                    <Circle
+                        lat={this.state.centre.lat}
+                        lng={this.state.centre.lng}
+                        radius={500}
+                        strokeWeight={1}
+                        strokeColor={'#FF0000'}
+                        strokeOpacity={0.8}
+                        fillColor={'#FF0000'}
+                        fillOpacity={0.35}
+                    />
+
                     {this.renderStationMarkers()}
                     {this.renderStationInfoWindows()}
+
                 </Gmaps>
         )
     }
@@ -103,15 +113,4 @@ Map.propTypes= {
     stations: PropTypes.array.isRequired,
 };
 export default Map;
-/*
-<Circle
-    lat={centre.lat}
-    lng={centre.lng}
-    radius={500}
-    strokeWeight={1}
-    strokeColor={'#FF0000'}
-    strokeOpacity={0.8}
-    fillColor={'#FF0000'}
-    fillOpacity={0.35}
-/>
- */
+

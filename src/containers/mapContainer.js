@@ -13,7 +13,7 @@ class MapContainer  extends Component  {
             ];
         return (
             <div style={{ height: 600 + 'px', width: 800 + 'px'}}>
-                <Map centre={{ lat: 51.53, lng: -0.1}} stations={ stations } loadingMessage={this.props.translate('loading')} />
+                <Map centre={{lat: 51.51, lng: -0.05 }} stations={ stations } loadingMessage={this.props.translate('loading')} />
             </div>
         );
     }
