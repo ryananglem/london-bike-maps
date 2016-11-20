@@ -1,13 +1,16 @@
 import React, { Component, PropTypes } from 'react';
+import ReactDOMServer from 'react-dom/server';
+
 import {Gmaps, InfoWindow , Marker } from 'react-gmaps';
 import BikeIcon from '../content/images/cycle-hire-pushpin-icon.gif'
+import StationInfo from './stationInfo'
 
 class Map extends Component {
 
     constructor(props) {
         super(props);
         this.onMarkerClicked = this.onMarkerClicked.bind(this);
-        this.onCloseClick = this.onCloseClick.bind(this);
+        this.onCloseClicked = this.onCloseClicked.bind(this);
         this.toggleInfoWindow = this.toggleInfoWindow.bind(this);
         const infoWindowsOpen = this.props.stations.map(() => false);
         const centre = this.props.centre || {
@@ -35,13 +38,13 @@ class Map extends Component {
             disableDefaultUI: false
         });
     }
-    onCloseClick(index) {
-        console.log('onCloseClick');
+    onCloseClicked(index) {
+        //console.log('onCloseClicked');
         this.toggleInfoWindow(index)
     }
 
     onMarkerClicked(index){
-        console.log(event);
+        //console.log(event);
         this.toggleInfoWindow(index)
     }
 
@@ -63,12 +66,14 @@ class Map extends Component {
         const { infoWindows } = this.state;
         return this.props.stations.map((station) => {
             if (!infoWindows[station.id]) return null;
+            let stationInfo = ReactDOMServer.renderToStaticMarkup(<StationInfo station={station} />);
             return (
                 <InfoWindow key={station.id}
                             lat={station.coords.lat}
                             lng={station.coords.lng}
+                            content={stationInfo}
                             draggable={false}
-                            onCloseClick={() => this.onCloseClick(station.id)}
+                            onCloseClick={() => this.onCloseClicked(station.id)}
                 />
             )
         });

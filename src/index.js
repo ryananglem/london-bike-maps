@@ -8,11 +8,16 @@ import 'bootstrap/dist/css/bootstrap-theme.css';
 
 import translations from './translations'
 import { IntlReducer as Intl, IntlProvider } from 'react-redux-multilingual'
+import { reducer as formReducer } from 'redux-form'
 import { createStore, combineReducers } from 'redux'
 import { Provider } from 'react-redux'
 
-let reducers = combineReducers(Object.assign({}, { Intl }))
-let store = createStore(reducers)
+let reducers = combineReducers(Object.assign({}, { Intl, form: formReducer }));
+let store;
+if (process.env.NODE_ENV==='development')
+    store = createStore(reducers, window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__());
+else
+    store = createStore(reducers);
 
 ReactDOM.render(
     <Provider store={store}>
