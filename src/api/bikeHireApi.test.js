@@ -4,8 +4,11 @@ import {getAllBikeStations} from './bikeHireApi'
 
 it ('should get bike station data from api', () => {
 
-    const stations = getAllBikeStations();
+    const stations = () => {
+        return getAllBikeStations().then((stations) => {
+            return stations;
+        })
+    }
 
-    console.log(stations);
-
+    expect(stations.length).toEqual(772)
 });

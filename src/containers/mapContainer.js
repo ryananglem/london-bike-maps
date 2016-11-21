@@ -15,15 +15,10 @@ class MapContainer  extends Component  {
         }
         this.getAllBikeStations = this.props.getAllBikeStations;
     }
-
     componentDidMount()
     {
-        //let _this = this;
-        this.getAllBikeStations()//.then((tflStations) => {
-            //console.log(tflStations);
-        //});
+        this.getAllBikeStations();
     }
-
     render()
     {
         const stations = [
