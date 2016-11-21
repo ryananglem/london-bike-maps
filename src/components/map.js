@@ -35,7 +35,6 @@ class Map extends Component {
         });
     }
     onCloseClicked(index) {
-        //console.log('onCloseClicked');
         this.toggleInfoWindow(index)
     }
     onMarkerClicked(index){
