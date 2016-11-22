@@ -1,7 +1,7 @@
 import { requestAllBikeStations, receiveAllBikeStations, getAllBikeStationsError} from '../actions/getBikeStationsActions'
-
 import { apiConfig } from './apiConfig'
-//import stations  from './staticData';
+
+import staticData from './staticData'
 
 export function getAllBikeStations() {
     let myHeaders = new Headers();
@@ -10,7 +10,7 @@ export function getAllBikeStations() {
         mode: 'cors',
         cache: 'default',
         headers: myHeaders
-    }
+    };
     const url = process.env.REACT_APP_TFL_SERVICE_URL + 'BikePoint' + apiConfig.apiKeyConfig;
     return (dispatch) => {
         dispatch(requestAllBikeStations());
@@ -18,11 +18,23 @@ export function getAllBikeStations() {
             if (!response.ok) {
                 throw Error(response.statusText);
             }
-            return response.json();
+            //return response.json();
+            return staticData;
         }).then((data) => {
-            dispatch(receiveAllBikeStations(data))
+            const stations = data.map(station => {
+                return( {
+                id: station.id.substring(station.id.indexOf("BikePoints_")+11, station.id.length),
+                name: station.commonName,
+                coords: {
+                    lat: station.lat,
+                    lng: station.lon
+                },
+              //  infoWindowIsOpen: false
+                });
+            });
+            dispatch(receiveAllBikeStations(stations))
         }).catch((err)=> {
-            dispatch(getAllBikeStationsError(err));
+            dispatch(getAllBikeStationsError(err.message));
         });
     }
 }

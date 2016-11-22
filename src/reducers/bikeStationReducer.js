@@ -14,8 +14,7 @@ const bikeStationReducer = (state = initialState, action) => {
         case 'RECEIVE_ALL_BIKE_STATIONS':
             return {
                 isFetchingStations: false,
-                stations: action.stations,
-                error: ''
+                stations: action.stations
             };
         case 'GET_ALL_BIKE_STATIONS_ERROR':
             return {
@@ -25,5 +24,5 @@ const bikeStationReducer = (state = initialState, action) => {
         default:
             return state;
     }
-}
+};
 export default bikeStationReducer;

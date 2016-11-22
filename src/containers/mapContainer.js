@@ -2,7 +2,6 @@ import React, {Component} from 'react';
 import Map from '../components/map'
 import { connect } from 'react-redux'
 import { withTranslate, IntlActions } from 'react-redux-multilingual'
-
 import {getAllBikeStations} from '../api/bikeHireApi';
 
 class MapContainer  extends Component  {
@@ -12,7 +11,7 @@ class MapContainer  extends Component  {
             isFetchingStations: false,
             error: '',
             stations: []
-        }
+        };
         this.getAllBikeStations = this.props.getAllBikeStations;
     }
     componentDidMount()
@@ -21,14 +20,10 @@ class MapContainer  extends Component  {
     }
     render()
     {
-        const stations = [
-            { id: 1, name:'North Greenwich', coords: { lat: 51.5, lng: 0 }},
-            { id: 2, name:'King Edward Park', coords: { lat: 51.51, lng: -0.05 }}
-            ];
-
+        if (this.props.stations===undefined) return null;
         return (
             <div style={{ height: 600 + 'px', width: 800 + 'px'}}>
-                <Map centre={{lat: 51.51, lng: -0.05 }} stations={ stations } loadingMessage={this.props.translate('loading')} />
+                <Map centre={{lat: 51.506451, lng: -0.170279 }} stations={ this.props.stations } loadingMessage={this.props.translate('loading')} />
             </div>
         );
     }
