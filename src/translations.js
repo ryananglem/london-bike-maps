@@ -4,7 +4,10 @@ export default {
     messages:
       {
       hello: 'how are you {name}',
-      loading: 'Loading please wait...'
+      loading: 'Loading please wait...',
+      parks: 'Parks available',
+      spaces: 'Spaces available',
+      settings: 'Options'
      }
   },
   zh: {

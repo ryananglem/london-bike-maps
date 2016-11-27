@@ -1,6 +1,60 @@
 import React from 'react';
-import { requestAllBikeStations, receiveAllBikeStations, getAllBikeStationsError} from './getBikeStationsActions'
+import { getAllBikeStations,
+        requestAllBikeStations,
+        receiveAllBikeStations,
+        getAllBikeStationsError,
+        toggleBikeStationInfoWindow
+        } from './getBikeStationsActions'
 
+import staticData from './static-data/staticData';
+import configureMockStore from 'redux-mock-store'
+import thunk from 'redux-thunk'
+import fetchMock from 'fetch-mock';
+
+import { apiConfig } from './apiConfig';
+
+const middlewares = [ thunk ];
+const mockStore = configureMockStore(middlewares);
+
+it('should get bike station data from api', () => {
+    process.env.REACT_APP_TFL_SERVICE_URL='https://api.tfl.gov.uk/';
+    process.env.REACT_APP_TFL_APPLICATION_KEY='9bad5c1b4fa4a3971fe0f7b55ebd643b';
+    process.env.REACT_APP_TFL_APPLICATION_ID='e9264262';
+    fetchMock
+        .mock(process.env.REACT_APP_TFL_SERVICE_URL + 'BikePoint' + apiConfig.apiKeyConfig, staticData);
+
+    const expectedActions = [
+        { type: 'REQUEST_ALL_BIKE_STATIONS', isFetchingStations: true },
+        { type: 'RECEIVE_ALL_BIKE_STATIONS', stations: stations, isFetchingStations: false  }
+    ];
+    const store = mockStore({ stations: [] });
+
+    return store.dispatch(getAllBikeStations())
+        .then(() => { // return of async actions
+            expect(store.getActions()).toEqual(expectedActions)
+        })
+
+});
+
+const stations = [
+    {
+        "coords": {
+            "lat": 51.529163,
+            "lng": -0.10997,
+        },
+        "id": "1",
+        "name": "River Street , Clerkenwell",
+        "infoWindowIsOpen": false,
+    },
+    {
+        "coords": {
+            "lat": 51.499606,
+            "lng": -0.197574,
+        },
+        "id": "2",
+        "name": "Phillimore Gardens, Kensington",
+        "infoWindowIsOpen": false,
+    }];
 
 it('should request all stations', () => {
 
@@ -33,3 +87,12 @@ it('should handle error getting all stations', () => {
     };
     expect(getAllBikeStationsError(error)).toEqual(expectedAction);
 });
+
+it('should toggle infowindow display attribute', () => {
+    const bikeStation =  { id: 1, name:'North Greenwich', coords: { lat: 51.5, lng: 0 }, infoWindowIsOpen: true }
+    const expectedAction = {
+        type: 'TOGGLE_BIKE_STATION_INFOWINDOW',
+        bikeStation: bikeStation
+    }
+    expect(toggleBikeStationInfoWindow(bikeStation)).toEqual(expectedAction);
+})
