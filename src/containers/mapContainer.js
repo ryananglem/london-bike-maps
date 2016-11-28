@@ -9,7 +9,7 @@ class MapContainer  extends Component  {
     constructor(props) {
         super(props);
         this.toggleInfoWindow = this.toggleInfoWindow.bind(this);
-        this.recentre = this.recentre.bind(this);
+        this.changeBounds = this.changeBounds.bind(this);
         this.changeZoom = this.changeZoom.bind(this);
     }
     componentDidMount()
@@ -19,11 +19,12 @@ class MapContainer  extends Component  {
     toggleInfoWindow(bikeStation)
     {
         this.props.toggleBikeStationInfoWindow(bikeStation);
-        this.props.recenterMap({ lat: bikeStation.coords.lat, lng: bikeStation.coords.lng })
+        // not sure I want to recenter the map when toggling infowindow anymore
+        //this.props.recenterMap({ lat: bikeStation.coords.lat, lng: bikeStation.coords.lng })
     }
-    recentre(coords)
+    changeBounds(coords)
     {
-        this.props.recenterMap(coords);
+        //this.props.changeBounds()
     }
     changeZoom(zoom)
     {
@@ -32,25 +33,38 @@ class MapContainer  extends Component  {
     render()
     {
         if (this.props.stations===undefined) return null;
-        return (
-            <div style={{ height: 800 + 'px', width: 1000 + 'px'}}>
+        return (/* // for testing
+            <div className="map-sidebar">
+                <ul>
+                    some items in this list
+                    <li>item 1 </li>
+                    <li>item 2 </li>
+                    <li>item 3 </li>
+                    <li>item 4 </li>
+                </ul>
+            </div>*/
+            <div className="map-body">
                 <Map centre={{lat: this.props.coords.lat, lng: this.props.coords.lng }}
                      zoom={this.props.zoom}
                      stations={ this.props.stations }
                      toggleInfoWindow={this.toggleInfoWindow}
                      changeZoom={this.changeZoom}
-                     loadingMessage={this.props.translate('loading')} />
+                     changeBounds={this.changeBounds}
+                     loadingMessage={this.props.translate('loading')}
+                     recenterMap={this.props.recenterMap}
+                />
+
             </div>
+
         );
     }
 }
 function mapStateToProps(state) {
-    //console.log('map statetoprops coords ' + state.rootReducer.mapReducer.coords.lat)
-    //console.log('map statetoprops zoom ' + state.rootReducer.mapReducer.zoom)
     const { rootReducer } = state;
-    const { bikeStationReducer, mapReducer } = rootReducer;
+    const { bikeStationReducer, mapReducer, zoomReducer } = rootReducer;
     const { stations, isFetchingStations,  error } = bikeStationReducer;
-    const { coords, zoom } = mapReducer
+    const { coords } = mapReducer;
+    const { zoom } = zoomReducer;
     return {
         isFetchingStations,
         stations,

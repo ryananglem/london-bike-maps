@@ -6,7 +6,7 @@ import { withTranslate /*, IntlActions */ } from 'react-redux-multilingual'
 import {Navbar, NavItem, Grid, Nav } from 'react-bootstrap';
 
 const App = (props) =>
-    <div className="App">
+    <div>
         <Navbar inverse fixedTop>
             <Grid>
                 <Navbar.Header>
@@ -29,7 +29,7 @@ const App = (props) =>
 
 function mapStateToProps(state) {
     return {}
-};
+}
 const mapDispatchToEvents = (dispatch) => {
     return {}
 };

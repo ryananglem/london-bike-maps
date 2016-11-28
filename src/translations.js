@@ -10,11 +10,11 @@ export default {
       settings: 'Options'
      }
   },
-  zh: {
-    locale: 'zh',
+  se: {
+    locale: 'se',
     messages:
       {
-      hello: '你好！你好吗 {name}'
+
     }
   }
 }

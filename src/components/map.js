@@ -5,6 +5,8 @@ import {Gmaps, InfoWindow , Marker, Circle } from 'react-gmaps';
 import BikeIcon from '../content/images/cycle-hire-pushpin-icon.gif'
 import StationInfo from './stationInfo'
 
+const params = {v: '3.exp', key:process.env.REACT_APP_GOOGLE_MAP_KEY};
+
 class Map extends Component {
 
     constructor(props) {
@@ -13,14 +15,20 @@ class Map extends Component {
         this.onCloseClicked = this.onCloseClicked.bind(this);
         this.toggleInfoWindow = this.toggleInfoWindow.bind(this);
         this.changeZoom = this.changeZoom.bind(this);
-
+        this.changeBounds = this.changeBounds.bind(this);
+        this.recenterMap = this.recenterMap.bind(this);
+        this.onDblClick = this.onDblClick.bind(this);
     }
     changeZoom() {
-        /*
-        const zoom = this.refs.Gmap.getMap().getZoom()
-        console.log( 'zoom ' + zoom )
+        const zoom = this.gmap.getMap().getZoom();
         this.props.changeZoom(zoom);
-        */
+    }
+    recenterMap(coords) {
+        this.props.recenterMap(coords);
+    }
+    changeBounds(){
+        console.log('change bounds')
+        this.props.changeBounds();
     }
     toggleInfoWindow(bikeStationId) {
         const bikeStation = this.props.stations.find(s => s.id === bikeStationId);
@@ -30,6 +38,15 @@ class Map extends Component {
         map.setOptions({
             disableDefaultUI: true
         });
+    }
+    onDblClick(e) {
+        //console.log(e);
+        //console.log(e.latLng.lat())
+        //console.log({ lat: e.latLng.lat(), lng: e.latLng.lng() })
+        /*this.recenterMap( {
+            lat: 51.506451,
+            lng: -0.170279
+        })*/
     }
     onCloseClicked(stationId) {
         this.toggleInfoWindow(stationId)
@@ -44,6 +61,7 @@ class Map extends Component {
                         lat={station.coords.lat}
                         lng={station.coords.lng}
                         icon={BikeIcon}
+                        onDblClick={this.onDblClick}
                         draggable={false}
                         onClick={ () => this.onMarkerClicked(station.id)}
                 />
@@ -66,18 +84,18 @@ class Map extends Component {
         });
     }
     render() {
-        //   ref={(googleMap) => this.gmap = googleMap}
-        //   zoom={this.props.zoom}
         return (
                 <Gmaps
+                    ref={(googleMap) => this.gmap = googleMap}
                     width={'100%'}
                     height={'100%'}
                     lat={this.props.centre.lat}
                     lng={this.props.centre.lng}
                     zoom={14}
-                    zoom_changed={this.changeZoom}
+                    onZoomChanged={this.changeZoom}
+                    onBoundsChanged={this.changeBounds}
                     loadingMessage={this.props.loadingMessage || 'Loading...'}
-                    params={{v: '3.exp', key:process.env.REACT_APP_GOOGLE_MAP_KEY}}
+                    params={params}
                     onMapCreated={this.onMapCreated}>
                     >
                     <Circle
@@ -102,7 +120,9 @@ Map.propTypes= {
     loadingMessage: PropTypes.string,
     stations: PropTypes.array.isRequired,
     toggleInfoWindow: PropTypes.func.isRequired,
-    changeZoom: PropTypes.func
+    changeZoom: PropTypes.func,
+    changeBounds: PropTypes.func,
+    recenterMap: PropTypes.func
 };
 export default Map;
 

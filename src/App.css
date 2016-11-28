@@ -1,24 +1,24 @@
-.App {
-  text-align: center;
+
+@media (min-width : 100px) {
+  .map-body {
+    clear: both;
+    width: 750px;
+    height: 550px;
+  }
+  .map-sidebar {
+    height: 550px;
+    clear: both;
+  }
+}
+@media (min-width: 750px) {
+  .map-body {
+    float: left;
+    width: 1000px;
+    height: 800px;
+  }
+  .map-sidebar {
+    float: left;
+    height: 800px;
+  }
 }
 
-.App-logo {
-  animation: App-logo-spin infinite 20s linear;
-  height: 80px;
-}
-
-.App-header {
-  background-color: #222;
-  height: 150px;
-  padding: 20px;
-  color: white;
-}
-
-.App-intro {
-  font-size: large;
-}
-
-@keyframes App-logo-spin {
-  from { transform: rotate(0deg); }
-  to { transform: rotate(360deg); }
-}
