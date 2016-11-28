@@ -6,7 +6,7 @@ import { withTranslate /*, IntlActions */ } from 'react-redux-multilingual'
 import {Navbar, NavItem, Grid, Nav } from 'react-bootstrap';
 
 const App = (props) =>
-    <div>
+    <div style={{ width: 100 + '%'}}>
         <Navbar inverse fixedTop>
             <Grid>
                 <Navbar.Header>

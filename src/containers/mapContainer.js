@@ -36,13 +36,14 @@ class MapContainer  extends Component  {
         return (/* // for testing
             <div className="map-sidebar">
                 <ul>
-                    some items in this list
+                    nearby stations
                     <li>item 1 </li>
                     <li>item 2 </li>
                     <li>item 3 </li>
                     <li>item 4 </li>
                 </ul>
             </div>*/
+            <div style={{textAlign: 'left'}}>
             <div className="map-body">
                 <Map centre={{lat: this.props.coords.lat, lng: this.props.coords.lng }}
                      zoom={this.props.zoom}
@@ -53,9 +54,8 @@ class MapContainer  extends Component  {
                      loadingMessage={this.props.translate('loading')}
                      recenterMap={this.props.recenterMap}
                 />
-
             </div>
-
+            </div>
         );
     }
 }
