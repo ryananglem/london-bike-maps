@@ -11,6 +11,7 @@ it('should render map', () => {
                                 stations={ stations }
                                 loadingMessage={'loading'}
                                 toggleInfoWindow={ () => { }}
+
                             />);
 
     expect(wrapper.find('Gmaps').length).toEqual(1);

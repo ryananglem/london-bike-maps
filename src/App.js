@@ -1,36 +1,43 @@
-import React from 'react';
+import React, {Component} from 'react';
 import './App.css';
 import { connect } from 'react-redux'
-import { withTranslate /*, IntlActions */ } from 'react-redux-multilingual'
+import { withTranslate, IntlActions } from 'react-redux-multilingual'
 
-import {Navbar, NavItem, Grid, Nav } from 'react-bootstrap';
+import Menu from './components/menu';
 
-const App = (props) =>
-    <div style={{ width: 100 + '%'}}>
-        <Navbar inverse fixedTop>
-            <Grid>
-                <Navbar.Header>
-                    <Navbar.Brand>
-                        <a href="/">London Bike Maps</a>
-                    </Navbar.Brand>
-                    <Navbar.Toggle />
-                </Navbar.Header>
-                <Navbar.Collapse>
-                    <Nav>
-                        <NavItem eventKey={1} href="#">{props.translate('parks')}</NavItem>
-                        <NavItem eventKey={2} href="#">{props.translate('spaces')}</NavItem>
-                        <NavItem eventKey={3} href="#">{props.translate('settings')}</NavItem>
-                    </Nav>
-                </Navbar.Collapse>
-            </Grid>
-        </Navbar>
-        { props.children }
-    </div>
-
+class App extends Component {
+    constructor(props){
+        super(props);
+        this.languageSelected = this.languageSelected.bind(this);
+    }
+    languageSelected(locale) {
+        this.props.setLocale(locale);
+    }
+    render() {
+        return (<div className="app">
+            <Menu
+                spaces={this.props.translate('spaces')}
+                parks={this.props.translate('parks')}
+                settings={this.props.translate('settings')}
+                languageSelected={this.languageSelected}
+                locale={this.props.locale}
+            />
+            { this.props.children }
+        </div>)
+    }
+}
 function mapStateToProps(state) {
-    return {}
+    const { Intl } = state;
+    const { locale }  = Intl;
+    return {
+        locale
+    }
 }
 const mapDispatchToEvents = (dispatch) => {
-    return {}
+    return {
+        setLocale: (locale) => {
+            dispatch(IntlActions.setLocale(locale))
+        }
+    }
 };
 export default withTranslate(connect(mapStateToProps, mapDispatchToEvents)(App));

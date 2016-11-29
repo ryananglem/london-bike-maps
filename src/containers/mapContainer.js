@@ -1,7 +1,7 @@
 import React, {Component} from 'react';
 import Map from '../components/map'
 import { connect } from 'react-redux'
-import { withTranslate, IntlActions } from 'react-redux-multilingual'
+import { withTranslate } from 'react-redux-multilingual'
 import {getAllBikeStations, toggleBikeStationInfoWindow} from '../actions/getBikeStationsActions';
 import {zoomMap, recentreMap } from '../actions/mapActions'
 
@@ -86,9 +86,6 @@ const mapDispatchToEvents = (dispatch) => {
         },
         zoomMap: (zoom) => {
             dispatch(zoomMap(zoom))
-        },
-        setLocale: (locale) => {
-            dispatch(IntlActions.setLocale(locale))
         }
     };
 };

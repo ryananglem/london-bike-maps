@@ -5,7 +5,7 @@ import {Gmaps, InfoWindow , Marker, Circle } from 'react-gmaps';
 import BikeIcon from '../content/images/cycle-hire-pushpin-icon.gif'
 import StationInfo from './stationInfo'
 
-const params = {v: '3.exp', key:process.env.REACT_APP_GOOGLE_MAP_KEY};
+const params = {v: '3.exp', key:process.env.REACT_APP_GOOGLE_MAP_KEY, language:'fr'};
 
 class Map extends Component {
 
@@ -27,7 +27,7 @@ class Map extends Component {
         this.props.recenterMap(coords);
     }
     changeBounds(){
-        console.log('change bounds')
+        //console.log('change bounds')
         this.props.changeBounds();
     }
     toggleInfoWindow(bikeStationId) {
@@ -36,7 +36,7 @@ class Map extends Component {
     }
     onMapCreated(map) {
         map.setOptions({
-            disableDefaultUI: true
+            disableDefaultUI: true,
         });
     }
     onDblClick(e) {

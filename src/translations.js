@@ -3,10 +3,9 @@ export default {
     locale: 'en-GB',
     messages:
       {
-      hello: 'how are you {name}',
       loading: 'Loading please wait...',
-      parks: 'Parks available',
-      spaces: 'Spaces available',
+      parks: 'Parks',
+      spaces: 'Spaces',
       settings: 'Options'
      }
   },
@@ -14,7 +13,10 @@ export default {
     locale: 'se',
     messages:
       {
-
+          loading: 'vänta...',
+          parks: 'parkering',
+          spaces: 'lediga platser',
+          settings: 'inställningar'
     }
   }
 }
