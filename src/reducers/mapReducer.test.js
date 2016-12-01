@@ -8,7 +8,6 @@ const initialState = {
     }
 };
 
-
 it('recentres the map', () => {
     const action = recentreMap({ lat: 10, lng: 14});
 
