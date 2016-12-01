@@ -51,7 +51,11 @@ export const getAllBikeStations = () => {
                         lat: station.lat,
                         lng: station.lon
                     },
-                    infoWindowIsOpen: false
+                    infoWindowIsOpen: false,
+                    terminalName: getAdditionalPropertyValue(station.additionalProperties, 'TerminalName'),
+                    bikes: getAdditionalPropertyValue(station.additionalProperties, 'NbBikes'),
+                    spaces: getAdditionalPropertyValue(station.additionalProperties, 'NbEmptyDocks'),
+                    totalDocks: getAdditionalPropertyValue(station.additionalProperties, 'NbDocks')
                 });
             });
             dispatch(receiveAllBikeStations(stations))
@@ -60,3 +64,8 @@ export const getAllBikeStations = () => {
         });
     }
 };
+
+function getAdditionalPropertyValue(properties, key)
+{
+    return properties.find(s => s.key===key).value;
+}

@@ -11,7 +11,7 @@ it('should render map', () => {
                                 stations={ stations }
                                 loadingMessage={'loading'}
                                 toggleInfoWindow={ () => { }}
-
+                                filter="PARKS_AVAILABLE"
                             />);
 
     expect(wrapper.find('Gmaps').length).toEqual(1);

@@ -38,6 +38,7 @@ it('should get bike station data from api', () => {
 
 const stations = [
     {
+        "bikes": "1",
         "coords": {
             "lat": 51.529163,
             "lng": -0.10997,
@@ -45,8 +46,12 @@ const stations = [
         "id": "1",
         "name": "River Street , Clerkenwell",
         "infoWindowIsOpen": false,
+        "spaces": "18",
+        "terminalName": "001023",
+        "totalDocks": "19",
     },
     {
+        "bikes": "28",
         "coords": {
             "lat": 51.499606,
             "lng": -0.197574,
@@ -54,6 +59,9 @@ const stations = [
         "id": "2",
         "name": "Phillimore Gardens, Kensington",
         "infoWindowIsOpen": false,
+        "spaces": "8",
+        "terminalName": "001018",
+        "totalDocks": "37",
     }];
 
 it('should request all stations', () => {
@@ -89,10 +97,10 @@ it('should handle error getting all stations', () => {
 });
 
 it('should toggle infowindow display attribute', () => {
-    const bikeStation =  { id: 1, name:'North Greenwich', coords: { lat: 51.5, lng: 0 }, infoWindowIsOpen: true }
+    const bikeStation =  { id: 1, name:'North Greenwich', coords: { lat: 51.5, lng: 0 }, infoWindowIsOpen: true };
     const expectedAction = {
         type: 'TOGGLE_BIKE_STATION_INFOWINDOW',
         bikeStation: bikeStation
-    }
+    };
     expect(toggleBikeStationInfoWindow(bikeStation)).toEqual(expectedAction);
 })

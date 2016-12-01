@@ -71,7 +71,7 @@ class Map extends Component {
     renderStationInfoWindows() {
         return this.props.stations.map((station) => {
             if (!station.infoWindowIsOpen) return null;
-            let stationInfo = ReactDOMServer.renderToStaticMarkup(<StationInfo station={station} />);
+            let stationInfo = ReactDOMServer.renderToStaticMarkup(<StationInfo filter={this.props.filter} station={station} />);
             return (
                 <InfoWindow key={station.id}
                             lat={station.coords.lat + 0.0001}
@@ -122,7 +122,8 @@ Map.propTypes= {
     toggleInfoWindow: PropTypes.func.isRequired,
     changeZoom: PropTypes.func,
     changeBounds: PropTypes.func,
-    recenterMap: PropTypes.func
+    recenterMap: PropTypes.func,
+    filter: PropTypes.string.isRequired
 };
 export default Map;
 

@@ -14,5 +14,4 @@ it('recentres the map', () => {
     const newState = mapReducer(initialState, action);
 
     expect(newState.coords).toEqual({ lat: 10, lng: 14});
-
 });

@@ -4,11 +4,14 @@ const StationInfo = (props) => {
     return (
         <div>
             <strong>{ props.station.name }</strong><br />
+            terminal: { props.station.terminalName } <br/>
+
         </div>
     )
-}
+};
 StationInfo.propTypes = {
-    station: PropTypes.object.isRequired
-}
+    station: PropTypes.object.isRequired,
+    filter: PropTypes.string.isRequired
+};
 export default StationInfo;
 

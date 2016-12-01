@@ -53,6 +53,7 @@ class MapContainer  extends Component  {
                      changeBounds={this.changeBounds}
                      loadingMessage={this.props.translate('loading')}
                      recenterMap={this.props.recenterMap}
+                     filter={this.props.filter}
                 />
             </div>
             </div>
@@ -61,16 +62,18 @@ class MapContainer  extends Component  {
 }
 function mapStateToProps(state) {
     const { rootReducer } = state;
-    const { bikeStationReducer, mapReducer, zoomReducer } = rootReducer;
+    const { bikeStationReducer, mapReducer, zoomReducer, filterReducer } = rootReducer;
     const { stations, isFetchingStations,  error } = bikeStationReducer;
     const { coords } = mapReducer;
     const { zoom } = zoomReducer;
+    const { filter } = filterReducer;
     return {
         isFetchingStations,
         stations,
         error,
         coords,
-        zoom
+        zoom,
+        filter
     }
 }
 const mapDispatchToEvents = (dispatch) => {
