@@ -12,6 +12,7 @@ it('should render map', () => {
                                 loadingMessage={'loading'}
                                 toggleInfoWindow={ () => { }}
                                 filter="PARKS_AVAILABLE"
+                                infoWindowText={{ translatedText: 'test'}}
                             />);
 
     expect(wrapper.find('Gmaps').length).toEqual(1);

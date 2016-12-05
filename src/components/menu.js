@@ -22,15 +22,15 @@ class Menu extends Component {
         <Grid>
             <Navbar.Header>
                 <Navbar.Brand>
-                    <a href="/">London Bike Maps</a>
+                    <a href="/">{ this.props.text.appName }</a>
                 </Navbar.Brand>
                 <Navbar.Toggle />
             </Navbar.Header>
             <Navbar.Collapse>
                 <Nav>
-                    <NavItem eventKey={1} href="#">{ this.props.parks }</NavItem>
-                    <NavItem eventKey={2} href="#">{ this.props.spaces}</NavItem>
-                    <NavItem eventKey={3} href="#">{ this.props.settings }</NavItem>
+                    <NavItem onSelect={() => this.props.changeFilter('BIKES_AVAILABLE')} active={ this.props.filter==='BIKES_AVAILABLE'} eventKey={1} href="#">{ this.props.text.bikes }</NavItem>
+                    <NavItem onSelect={() => this.props.changeFilter('PARKS_AVAILABLE')} active={ this.props.filter==='PARKS_AVAILABLE'} eventKey={2} href="#">{ this.props.text.spaces }</NavItem>
+                    <NavItem eventKey={3} href="#">{ this.props.text.settings }</NavItem>
                 </Nav>
             <Nav pullRight>
                 <NavDropdown id="language-selector" title={ <div><img className="flag" alt={flag.locale}  src={flag.flag}  /></div> } eventKey={4} >
@@ -45,9 +45,9 @@ class Menu extends Component {
 }
 Menu.propTypes = {
     locale: PropTypes.string.isRequired,
-    parks: PropTypes.string.isRequired,
-    spaces: PropTypes.string.isRequired,
-    settings: PropTypes.string.isRequired,
-    languageSelected: PropTypes.func.isRequired
+    text: PropTypes.object.isRequired,
+    languageSelected: PropTypes.func.isRequired,
+    changeFilter: PropTypes.func.isRequired,
+    filter: PropTypes.string.isRequired
 };
 export default Menu

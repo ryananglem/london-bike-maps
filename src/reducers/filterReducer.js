@@ -8,6 +8,10 @@ const filterReducer = (state = initialState, action) => {
             return {
                 filter: action.filter
             };
+        case 'FILTER_BY_BIKES':
+            return {
+                filter: action.filter
+            };
         default:
             return state;
     }

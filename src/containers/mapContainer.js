@@ -32,6 +32,12 @@ class MapContainer  extends Component  {
     }
     render()
     {
+        const translatedText = {
+            bikesFree: this.props.translate('bikesFree'),
+            spacesFree: this.props.translate('spacesFree'),
+            terminalName: this.props.translate('terminalName'),
+            totalSpaces: this.props.translate('totalSpaces')
+        };
         if (this.props.stations===undefined) return null;
         return (/* // for testing
             <div className="map-sidebar">
@@ -49,6 +55,7 @@ class MapContainer  extends Component  {
                      zoom={this.props.zoom}
                      stations={ this.props.stations }
                      toggleInfoWindow={this.toggleInfoWindow}
+                     infoWindowText={ translatedText }
                      changeZoom={this.changeZoom}
                      changeBounds={this.changeBounds}
                      loadingMessage={this.props.translate('loading')}
