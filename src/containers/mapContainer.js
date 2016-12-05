@@ -11,6 +11,8 @@ class MapContainer  extends Component  {
         this.toggleInfoWindow = this.toggleInfoWindow.bind(this);
         this.changeBounds = this.changeBounds.bind(this);
         this.changeZoom = this.changeZoom.bind(this);
+        this.displayColour = this.displayColour.bind(this);
+        this.percentAvailable = this.percentAvailable.bind(this);
     }
     componentDidMount()
     {
@@ -22,6 +24,15 @@ class MapContainer  extends Component  {
         // not sure I want to recenter the map when toggling infowindow anymore
         //this.props.recenterMap({ lat: bikeStation.coords.lat, lng: bikeStation.coords.lng })
     }
+    percentAvailable(filter, station) {
+        return (filter==="BIKES_AVAILABLE")
+            ? (parseInt(station.bikes, 10) / parseInt(station.totalDocks, 10)) * 100
+            : (parseInt(station.spaces, 10) / parseInt(station.totalDocks, 10)) * 100;
+    }
+    displayColour(percentage) {
+        return (percentage < 10.0) ? 'danger' : (percentage < 20.0) ? 'warning' : 'success';
+    }
+
     changeBounds(coords)
     {
         //this.props.changeBounds()
@@ -54,6 +65,8 @@ class MapContainer  extends Component  {
                 <Map centre={{lat: this.props.coords.lat, lng: this.props.coords.lng }}
                      zoom={this.props.zoom}
                      stations={ this.props.stations }
+                     displayColour={ this.displayColour}
+                     percentage={this.percentAvailable}
                      toggleInfoWindow={this.toggleInfoWindow}
                      infoWindowText={ translatedText }
                      changeZoom={this.changeZoom}

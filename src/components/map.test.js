@@ -13,6 +13,8 @@ it('should render map', () => {
                                 toggleInfoWindow={ () => { }}
                                 filter="PARKS_AVAILABLE"
                                 infoWindowText={{ translatedText: 'test'}}
+                                displayColour={ ()=> {}}
+                                percentage={ () => {}}
                             />);
 
     expect(wrapper.find('Gmaps').length).toEqual(1);

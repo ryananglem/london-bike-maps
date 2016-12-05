@@ -40,8 +40,6 @@ class Map extends Component {
         });
     }
     onDblClick(e) {
-        //console.log(e);
-        //console.log(e.latLng.lat())
         //console.log({ lat: e.latLng.lat(), lng: e.latLng.lng() })
         /*this.recenterMap( {
             lat: 51.506451,
@@ -70,9 +68,14 @@ class Map extends Component {
     }
     renderStationInfoWindows() {
         return this.props.stations.map((station) => {
+            const percentage = this.props.percentage(this.props.filter, station);
+            const colour = this.props.displayColour(percentage);
             if (!station.infoWindowIsOpen) return null;
             let stationInfo = ReactDOMServer.renderToStaticMarkup(
-                <StationInfo filter={this.props.filter} text={ this.props.infoWindowText } station={station} />);
+                <StationInfo filter={this.props.filter} text={ this.props.infoWindowText }
+                             displayColour={ colour}
+                             percentage={ percentage }
+                             station={station} />);
             return (
                 <InfoWindow key={station.id}
                             lat={station.coords.lat + 0.0001}
@@ -125,7 +128,9 @@ Map.propTypes= {
     changeZoom: PropTypes.func,
     changeBounds: PropTypes.func,
     recenterMap: PropTypes.func,
-    filter: PropTypes.string.isRequired
+    filter: PropTypes.string.isRequired,
+    displayColour: PropTypes.func.isRequired,
+    percentage: PropTypes.func.isRequired
 };
 export default Map;
 

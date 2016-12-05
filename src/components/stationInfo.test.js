@@ -8,6 +8,8 @@ it('should render station info', () => {
                                     filter="BIKES_AVAILABLE"
                                     station={ station }
                                     text={{ test: 'text'}}
+                                    displayColour="success"
+                                    percentage={ 90 }
                                 />);
 
     expect(wrapper.contains('King Edward Park')).toBe(true);
