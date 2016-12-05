@@ -18,7 +18,7 @@ class Menu extends Component {
     render(){
     const flag = flags.find(f => f.locale === this.props.locale);
     return (
-     <Navbar inverse fixedTop>
+     <Navbar collapseOnSelect inverse fixedTop>
         <Grid>
             <Navbar.Header>
                 <Navbar.Brand>
