@@ -3,6 +3,7 @@ import ReactDOMServer from 'react-dom/server';
 
 import {Gmaps, InfoWindow , Marker, Circle } from 'react-gmaps';
 import BikeIcon from '../content/images/cycle-hire-pushpin-icon.gif'
+import DangerIcon  from '../content/images/cycle-hire-pushpin-icon-red.gif'
 import StationInfo from './stationInfo'
 
 const params = {v: '3.exp', key:process.env.REACT_APP_GOOGLE_MAP_KEY};
