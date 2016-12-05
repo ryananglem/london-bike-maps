@@ -3,7 +3,7 @@ import ReactDOMServer from 'react-dom/server';
 
 import {Gmaps, InfoWindow , Marker, Circle } from 'react-gmaps';
 import BikeIcon from '../content/images/cycle-hire-pushpin-icon.gif'
-import DangerIcon  from '../content/images/cycle-hire-pushpin-icon-red.gif'
+import DangerIcon  from '../content/images/cycle-hire-pushpin-icon-danger.gif'
 import StationInfo from './stationInfo'
 
 const params = {v: '3.exp', key:process.env.REACT_APP_GOOGLE_MAP_KEY};
@@ -55,11 +55,13 @@ class Map extends Component {
     }
     renderStationMarkers() {
         return this.props.stations.map((station) => {
+            const percentage = this.props.percentage(this.props.filter, station);
+            const colour = this.props.displayColour(percentage);
             return (
                 <Marker key={station.id}
                         lat={station.coords.lat}
                         lng={station.coords.lng}
-                        icon={BikeIcon}
+                        icon={ (colour==="danger") ? DangerIcon : BikeIcon }
                         onDblClick={this.onDblClick}
                         draggable={false}
                         onClick={ () => this.onMarkerClicked(station.id)}
