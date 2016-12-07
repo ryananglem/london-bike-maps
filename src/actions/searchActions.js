@@ -27,7 +27,8 @@ export const stationSearch = (searchText) => {
             const stations = getState().rootReducer.bikeStationReducer.stations;
             let searchResults = [];
             stations.forEach(s => {
-                if (s.name.toLowerCase().includes(searchText.toLowerCase())) searchResults.push(s)
+                if (s.name.toLowerCase().includes(searchText.toLowerCase()))
+                { searchResults.push(s);}
             });
             if (searchResults.length === 0) {
                 dispatch(noStationFound())
