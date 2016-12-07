@@ -1,4 +1,3 @@
-import React from 'react';
 import { getAllBikeStations,
         requestAllBikeStations,
         receiveAllBikeStations,
@@ -103,4 +102,4 @@ it('should toggle infowindow display attribute', () => {
         bikeStation: bikeStation
     };
     expect(toggleBikeStationInfoWindow(bikeStation)).toEqual(expectedAction);
-})
+});

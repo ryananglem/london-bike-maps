@@ -6,5 +6,9 @@ it('renders menu without crashing', () => {
     const div = document.createElement('div');
 
     shallow(<Menu text={{translatedText: 'some text'}} locale="en"
-                  languageSelected={ () => { }} changeFilter={ () => {}} filter="" />);
+                  languageSelected={ () => { }}
+                  changeFilter={ () => {}}
+                  filter=""
+                  searchStations={ () => {}}
+    />);
 });

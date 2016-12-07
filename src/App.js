@@ -1,8 +1,9 @@
 import React, {Component} from 'react';
 import './App.css';
-import { connect } from 'react-redux'
-import { withTranslate, IntlActions } from 'react-redux-multilingual'
-import { filterByParks, filterByBikes } from './actions/filterActions'
+import { connect } from 'react-redux';
+import { withTranslate, IntlActions } from 'react-redux-multilingual';
+import { filterByParks, filterByBikes } from './actions/filterActions';
+import { stationSearch } from './actions/searchActions';
 
 import Menu from './components/menu';
 
@@ -29,7 +30,8 @@ class App extends Component {
             spaces: this.props.translate('spaces'),
             bikes: this.props.translate('bikes'),
             settings: this.props.translate('settings'),
-            appName: this.props.translate('appName')
+            appName: this.props.translate('appName'),
+            search: this.props.translate('search')
         };
         return (<div className="app">
             <Menu
@@ -38,6 +40,7 @@ class App extends Component {
                 locale={this.props.locale}
                 filter={this.props.filter}
                 changeFilter={this.changeFilter}
+                searchStations={this.props.searchStations}
             />
             { this.props.children }
         </div>)
@@ -63,6 +66,9 @@ const mapDispatchToEvents = (dispatch) => {
         },
         filterByParks: () => {
             dispatch(filterByParks())
+        },
+        searchStations: (searchText) => {
+            dispatch(stationSearch(searchText))
         }
     }
 };

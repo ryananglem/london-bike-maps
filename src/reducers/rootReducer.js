@@ -3,10 +3,12 @@ import bikeStationReducer from './bikeStationReducer';
 import mapReducer from './mapReducer';
 import zoomReducer from './zoomReducer';
 import filterReducer from './filterReducer';
+import searchReducer from './searchReducer';
 
 export default combineReducers({
     bikeStationReducer,
     mapReducer,
     zoomReducer,
-    filterReducer
+    filterReducer,
+    searchReducer
 })

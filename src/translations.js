@@ -11,7 +11,8 @@ export default {
       bikesFree: 'bikes',
       spacesFree: 'spaces',
       terminalName: 'terminal',
-      totalSpaces: 'total'
+      totalSpaces: 'total',
+      search: 'Search'
      }
   },
   se: {
@@ -26,7 +27,8 @@ export default {
           bikesFree: 'cyklar',
           spacesFree: 'cykel parker',
           terminalName: 'terminal',
-          totalSpaces: 'totala ställen'
+          totalSpaces: 'totala ställen',
+          search: 'sök'
     }
   }
 }
