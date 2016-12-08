@@ -12,7 +12,7 @@ export default {
       spacesFree: 'spaces',
       terminalName: 'terminal',
       totalSpaces: 'total',
-      search: 'Search'
+      search: 'Search name or terminal no..'
      }
   },
   se: {
@@ -28,7 +28,7 @@ export default {
           spacesFree: 'cykel parker',
           terminalName: 'terminal',
           totalSpaces: 'totala ställen',
-          search: 'sök'
+          search: 'sök namn eller terminal nummer..'
     }
   }
 }

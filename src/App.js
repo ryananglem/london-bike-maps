@@ -16,17 +16,20 @@ class App extends Component {
         this.getSuggestions = this.getSuggestions.bind(this);
         this.searchStations = this.searchStations.bind(this);
     }
-    searchStations(searchText)
-    {
-        this.props.searchStations(searchText);
-        //todo: this needs to be separated as its not conforming to SRP
-        if (this.props.searchResults.length > 0) {
-            this.props.recenterMap(
-                {
-                    lat: this.props.searchResults[0].coords.lat,
-                    lng: this.props.searchResults[0].coords.lng
+    searchStations(searchText) {
+        let prm = new Promise(
+            (resolve, reject) => {
+                this.props.searchStations(searchText);
+                resolve();
+            }
+        );
+        prm.then(() => {
+            //todo: this needs to be separated as its not conforming to SRP
+            this.props.recenterMap({
+                    lat: this.props.searchResults.coords.lat,
+                    lng: this.props.searchResults.coords.lng
                 });
-        }
+        });
     }
     languageSelected(locale) {
         this.props.setLocale(locale);

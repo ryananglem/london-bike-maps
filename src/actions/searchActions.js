@@ -1,7 +1,7 @@
 
 export const requestStationSearch = (searchText) => ({
     type: "REQUEST_STATION_SEARCH",
-    searchResults: [],
+    searchResults: "",
     searchText
 });
 
@@ -12,12 +12,12 @@ export const receiveStationSearch= (searchResults) => ({
 
 export const noStationFound = () => ({
     type: "NO_STATION_FOUND",
-    searchResults: []
+    searchResults: ""
 });
 
 export const noSearchTerm = () => ({
     type: "NO_SEARCH_TERM",
-    searchResults: []
+    searchResults: ""
 });
 
 export const stationSearch = (searchText) => {
@@ -25,12 +25,14 @@ export const stationSearch = (searchText) => {
         if (searchText!=="") {
           dispatch(requestStationSearch(searchText));
             const stations = getState().rootReducer.bikeStationReducer.stations;
-            let searchResults = [];
-            stations.forEach(s => {
-                if (s.name.toLowerCase().includes(searchText.toLowerCase()))
-                { searchResults.push(s);}
-            });
-            if (searchResults.length === 0) {
+            let searchResults="";
+            if (isNaN(searchText)) {
+                searchResults = stations.find(s => s.name.toLowerCase() === searchText.toLowerCase())
+            }
+            else {
+                searchResults = stations.find(s => s.terminalName === searchText)
+            }
+            if (searchResults === undefined) {
                 dispatch(noStationFound())
             }
             else {

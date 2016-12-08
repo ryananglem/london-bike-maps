@@ -14,10 +14,6 @@ class MapContainer  extends Component  {
         this.displayColour = this.displayColour.bind(this);
         this.percentAvailable = this.percentAvailable.bind(this);
     }
-    componentWillMount()
-    {
-
-    }
     componentDidMount()
     {
         this.props.getAllBikeStations();
@@ -25,8 +21,6 @@ class MapContainer  extends Component  {
     toggleInfoWindow(bikeStation)
     {
         this.props.toggleBikeStationInfoWindow(bikeStation);
-        // not sure I want to recenter the map when toggling infowindow anymore
-        //this.props.recenterMap({ lat: bikeStation.coords.lat, lng: bikeStation.coords.lng })
     }
     percentAvailable(filter, station) {
         return (filter==="BIKES_AVAILABLE")

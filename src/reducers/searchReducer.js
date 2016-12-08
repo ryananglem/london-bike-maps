@@ -1,6 +1,6 @@
 const initialState = {
     searchText: '',
-    searchResults: []
+    searchResults: ""
 };
 
 const searchReducer = (state = initialState, action) => {
@@ -8,7 +8,7 @@ const searchReducer = (state = initialState, action) => {
         case 'REQUEST_STATION_SEARCH':
             return {
                 searchText: action.searchText,
-                searchResults: []
+                searchResults: ""
             };
         case 'RECEIVE_STATION_SEARCH':
             return {

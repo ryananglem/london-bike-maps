@@ -11,7 +11,6 @@ class StationAutoComplete extends Component {
 
 constructor() {
     super();
-
     this.state = {
         suggestions: []
     };
@@ -45,7 +44,7 @@ render() {
             renderSuggestion={renderSuggestion}
             inputProps={inputProps} />
     );
-}
+    }
 }
 StationAutoComplete.propTypes = {
     getSuggestions: PropTypes.func.isRequired,
