@@ -1,4 +1,4 @@
-import {recentreMap, zoomMap} from './mapActions'
+import {recenterMap, zoomMap} from './mapActions'
 
 it('should recenter the map', () => {
 
@@ -7,12 +7,12 @@ it('should recenter the map', () => {
         type: 'RECENTER_MAP',
         coords: coords
     };
-    expect(recentreMap(coords)).toEqual(expectedAction);
+    expect(recenterMap(coords)).toEqual(expectedAction);
 });
 
 it('should request all stations', () => {
 
-    const zoom = 13
+    const zoom = 13;
     const expectedAction = {
         type: 'ZOOM_MAP',
         zoom: zoom

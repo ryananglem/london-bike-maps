@@ -69,8 +69,8 @@ it('should return value present in list when searching for stations',() => {
         }] }
     ];
     const store = mockStore({ rootReducer: { bikeStationReducer: { stations: stations }}});
-    store.dispatch(stationSearch(searchText))
-    expect(store.getActions()).toEqual(expectedActions)
+    store.dispatch(stationSearch(searchText));
+    expect(store.getActions()).toEqual(expectedActions);
 });
 
 it('should dispatch error when not item matching search during searching for stations',() => {
@@ -85,22 +85,16 @@ it('should dispatch error when not item matching search during searching for sta
     expect(store.getActions()).toEqual(expectedActions)
 });
 
-it('should dispatch error when no search term present during searching for stations',() => {
+it('should dispatch error when no search term present during search for stations',() => {
 
     const searchText  = '';
     const expectedActions = [
         { type: 'NO_SEARCH_TERM', searchResults: [] }
     ];
     const store = mockStore({ rootReducer: { bikeStationReducer: { stations: stations }}});
-    store.dispatch(stationSearch(searchText))
-    expect(store.getActions()).toEqual(expectedActions)
+    store.dispatch(stationSearch(searchText));
+    expect(store.getActions()).toEqual(expectedActions);
 });
-
-
-
-
-
-
 
 
 const stations = [

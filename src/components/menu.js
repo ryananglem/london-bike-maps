@@ -3,7 +3,7 @@ import {Navbar, NavItem, Grid, Nav, NavDropdown, MenuItem, Glyphicon, /* FormGro
 import Swedish from '../content/images/Flag_of_Sweden.png';
 import British from '../content/images/Flag_of_United_Kingdom.png';
 
-import SearchField from './searchField';
+import StationAutoComplete from './stationAutoComplete';
 
 const flags = [
     {
@@ -18,37 +18,22 @@ const flags = [
 class Menu extends Component {
     constructor(props){
         super(props);
-
-        this.onChange = this.onChange.bind(this)
+        this.state = {
+            searchText: ''
+        };
+        this.onChange = this.onChange.bind(this);
     }
-    componentWillMount()
-        {
-            this.setState({
-                 searchText: ''
-            });
-        }
-    /*
-     <form><FormGroup>
-     <FormControl type="text" />
-     <FormControl bsClass="hidden-search"  type="text" />
-     </FormGroup></form>
 
-
-<p>{ this.props.text.search }</p>
-<p>{ this.props.text.settings} </p>
-    */
-    onChange(event) {
-        const field = event.target.name;
-        const value = event.target.value;
-        let newState = this.state;
-        newState[field] = value;
-        return this.setState(newState);
-    }
+    onChange = (event, { newValue, method }) => {
+        this.setState({
+            searchText: newValue
+        });
+    };
 
     render(){
     const flag = flags.find(f => f.locale === this.props.locale);
     return (
-     <Navbar fluid collapseOnSelect inverse fixedTop >
+     <Navbar fluid inverse fixedTop >
         <Grid>
             <Navbar.Header>
                 <Navbar.Brand>
@@ -62,15 +47,19 @@ class Menu extends Component {
                     <NavItem onSelect={() => this.props.changeFilter('PARKS_AVAILABLE')} active={ this.props.filter==='PARKS_AVAILABLE'} eventKey={2} href="#">{ this.props.text.spaces }</NavItem>
                 </Nav>
                 <Nav pullRight>
-                    <NavItem eventKey={5} href="#" onSelect={ () => this.props.searchStations(this.state.searchText) } >
-                            <SearchField placeholder={ this.props.text.search } onChange={this.onChange} name="searchText"  />
-                            {' '}
+                    <NavItem>
+                        <StationAutoComplete
+                            placeholder={ this.props.text.search }
+                            onChange={this.onChange}
+                            searchText={this.state.searchText}
+                            getSuggestions={this.props.getSuggestions}
+                        />
+                    </NavItem>
+                    <NavItem eventKey={5} href="#" onSelect={ () => this.props.searchStations(this.state.searchText) }>
                             <Glyphicon glyph="search" />
                     </NavItem>
                     <NavItem eventKey={3} href="#">
-                        <div style={{ textAlign: 'center'}}>
                             <Glyphicon glyph="cog" />
-                        </div>
                     </NavItem>
                     <NavDropdown id="language-selector" title={ <span style={{ height: 20 + 'px'}}><img className="flag" alt={flag.locale}  src={flag.flag}  /></span> } eventKey={4} >
                     <MenuItem onSelect={() => this.props.languageSelected('en')} eventKey={'en'}><img className="flag" src={British} alt="British Flag"/> English</MenuItem>

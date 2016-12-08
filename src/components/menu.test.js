@@ -10,5 +10,6 @@ it('renders menu without crashing', () => {
                   changeFilter={ () => {}}
                   filter=""
                   searchStations={ () => {}}
+                  getSuggestions={ () => {}}
     />);
 });

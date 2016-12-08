@@ -1,4 +1,4 @@
-import { recentreMap } from '../actions/mapActions'
+import { recenterMap } from '../actions/mapActions'
 import mapReducer from './mapReducer';
 
 const initialState = {
@@ -9,7 +9,7 @@ const initialState = {
 };
 
 it('recentres the map', () => {
-    const action = recentreMap({ lat: 10, lng: 14});
+    const action = recenterMap({ lat: 10, lng: 14});
 
     const newState = mapReducer(initialState, action);
 

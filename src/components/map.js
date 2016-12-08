@@ -19,8 +19,10 @@ class Map extends Component {
         this.changeBounds = this.changeBounds.bind(this);
         this.recenterMap = this.recenterMap.bind(this);
         this.onDblClick = this.onDblClick.bind(this);
+        this.onMapCreated=this.onMapCreated.bind(this);
     }
     changeZoom() {
+        if (this.gmap ===  null) return;
         const zoom = this.gmap.getMap().getZoom();
         this.props.changeZoom(zoom);
     }
@@ -40,6 +42,7 @@ class Map extends Component {
             disableDefaultUI: true,
         });
     }
+
     onDblClick(e) {
         //console.log({ lat: e.latLng.lat(), lng: e.latLng.lng() })
         /*this.recenterMap( {
@@ -90,6 +93,7 @@ class Map extends Component {
             )
         });
     }
+
     render() {
         return (
                 <Gmaps

@@ -1,5 +1,5 @@
 
-export const recentreMap = (coords) => ({
+export const recenterMap = (coords) => ({
     type: "RECENTER_MAP",
     coords
 });

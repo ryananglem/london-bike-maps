@@ -14,6 +14,10 @@ class MapContainer  extends Component  {
         this.displayColour = this.displayColour.bind(this);
         this.percentAvailable = this.percentAvailable.bind(this);
     }
+    componentWillMount()
+    {
+
+    }
     componentDidMount()
     {
         this.props.getAllBikeStations();
@@ -82,8 +86,9 @@ class MapContainer  extends Component  {
 }
 function mapStateToProps(state) {
     const { rootReducer } = state;
-    const { bikeStationReducer, mapReducer, zoomReducer, filterReducer } = rootReducer;
+    const { bikeStationReducer, mapReducer, zoomReducer, filterReducer, searchReducer } = rootReducer;
     const { stations, isFetchingStations,  error } = bikeStationReducer;
+    const { searchResults } = searchReducer;
     const { coords } = mapReducer;
     const { zoom } = zoomReducer;
     const { filter } = filterReducer;
@@ -93,7 +98,8 @@ function mapStateToProps(state) {
         error,
         coords,
         zoom,
-        filter
+        filter,
+        searchResults
     }
 }
 const mapDispatchToEvents = (dispatch) => {

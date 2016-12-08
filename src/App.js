@@ -4,6 +4,7 @@ import { connect } from 'react-redux';
 import { withTranslate, IntlActions } from 'react-redux-multilingual';
 import { filterByParks, filterByBikes } from './actions/filterActions';
 import { stationSearch } from './actions/searchActions';
+import { recenterMap } from './actions/mapActions';
 
 import Menu from './components/menu';
 
@@ -12,6 +13,20 @@ class App extends Component {
         super(props);
         this.languageSelected = this.languageSelected.bind(this);
         this.changeFilter = this.changeFilter.bind(this);
+        this.getSuggestions = this.getSuggestions.bind(this);
+        this.searchStations = this.searchStations.bind(this);
+    }
+    searchStations(searchText)
+    {
+        this.props.searchStations(searchText);
+        //todo: this needs to be separated as its not conforming to SRP
+        if (this.props.searchResults.length > 0) {
+            this.props.recenterMap(
+                {
+                    lat: this.props.searchResults[0].coords.lat,
+                    lng: this.props.searchResults[0].coords.lng
+                });
+        }
     }
     languageSelected(locale) {
         this.props.setLocale(locale);
@@ -24,7 +39,14 @@ class App extends Component {
             this.props.filterByParks();
         }
     }
+    getSuggestions(value) {
+        const inputValue = value.trim().toLowerCase();
+        const inputLength = inputValue.length;
 
+        return inputLength === 0 ? [] : this.props.stations.filter(lang =>
+            lang.name.toLowerCase().slice(0, inputLength) === inputValue
+        );
+    }
     render() {
         const translatedText = {
             spaces: this.props.translate('spaces'),
@@ -40,7 +62,8 @@ class App extends Component {
                 locale={this.props.locale}
                 filter={this.props.filter}
                 changeFilter={this.changeFilter}
-                searchStations={this.props.searchStations}
+                searchStations={this.searchStations}
+                getSuggestions={this.getSuggestions}
             />
             { this.props.children }
         </div>)
@@ -48,12 +71,16 @@ class App extends Component {
 }
 function mapStateToProps(state) {
     const { Intl, rootReducer } = state;
-    const { filterReducer } = rootReducer;
+    const { filterReducer, bikeStationReducer, searchReducer } = rootReducer;
+    const { stations } =  bikeStationReducer;
+    const { searchResults } = searchReducer;
     const { locale }  = Intl;
     const { filter } = filterReducer;
     return {
         locale,
-        filter
+        filter,
+        stations,
+        searchResults
     }
 }
 const mapDispatchToEvents = (dispatch) => {
@@ -67,8 +94,11 @@ const mapDispatchToEvents = (dispatch) => {
         filterByParks: () => {
             dispatch(filterByParks())
         },
-        searchStations: (searchText) => {
+        searchStations: searchText => {
             dispatch(stationSearch(searchText))
+        },
+        recenterMap: (coords) => {
+            dispatch(recenterMap(coords))
         }
     }
 };
