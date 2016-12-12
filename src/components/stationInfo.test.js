@@ -10,6 +10,7 @@ it('should render station info', () => {
                                     text={{ test: 'text'}}
                                     displayColour="success"
                                     percentage={ 90 }
+                                    locale="se"
                                 />);
 
     expect(wrapper.contains('King Edward Park')).toBe(true);

@@ -8,6 +8,9 @@
     height: 550px;
   }
   .map-sidebar {
+      margin-top: 0px;
+      padding-top: 0px;
+      padding-left: 0px;
   }
 }
 @media (min-width: 455px) {
@@ -20,6 +23,7 @@
   .map-sidebar {
     margin-top: 30px;
     padding-top: 30px;
+    padding-left: 3px;
     display:inline-block;
     height: 100px;
     width: 200px;

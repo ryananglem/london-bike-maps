@@ -16,6 +16,11 @@ class App extends Component {
         this.getSuggestions = this.getSuggestions.bind(this);
         this.searchStations = this.searchStations.bind(this);
     }
+    componentDidMount()
+    {
+        //this.props.searchStations('001088');
+        //this.searchStations('001088');
+    }
     searchStations(searchText) {
         let prm = new Promise(
             (resolve, reject) => {
@@ -23,7 +28,6 @@ class App extends Component {
                 resolve();
             }
         );
-
         prm.then(() => {
             if (this.props.searchResults!==undefined) {
                 this.props.recenterMap({

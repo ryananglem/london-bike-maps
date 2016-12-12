@@ -1,6 +1,16 @@
 const initialState = {
-    searchText: '',
-    searchResults: ""
+    searchText: '001088',
+    searchResults: {
+        "bikes": "15",
+        "coords": {"lat": 51.506451, "lng": -0.170279},
+        "distance": 53.784502205714475,
+        "id": "248",
+        "infoWindowIsOpen": false,
+        "name": "Triangle Car Park, Hyde Park",
+        "spaces": "10",
+        "terminalName": "001088",
+        "totalDocks": "27"
+    }
 };
 
 const searchReducer = (state = initialState, action) => {

@@ -18,15 +18,6 @@ class MapContainer  extends Component  {
     {
         this.props.getAllBikeStations();
     }
-    /*
-    componentWillReceiveProps() {
-        if (this.props.searchResults !== "" ) {
-            this.props.recenterMap({
-                lat: this.props.searchResults.coords.lat,
-                lng: this.props.searchResults.coords.lng
-            });
-        }
-    }*/
     toggleInfoWindow(bikeStation)
     {
         this.props.toggleBikeStationInfoWindow(bikeStation);

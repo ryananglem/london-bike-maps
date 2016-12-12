@@ -1,5 +1,5 @@
 import { apiConfig } from './apiConfig'
-import nearestStationStaticData from './static-data/nearestStationStaticData';
+//import nearestStationStaticData from './static-data/nearestStationStaticData';
 
 export const requestNearbyBikeStations = () => ({
     type: "REQUEST_NEARBY_BIKE_STATIONS",

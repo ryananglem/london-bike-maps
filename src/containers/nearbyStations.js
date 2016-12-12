@@ -1,39 +1,51 @@
 import React, { Component } from 'react';
 
-import { connect } from 'react-redux'
-import { withTranslate } from 'react-redux-multilingual'
-import { getNearbyBikeStations } from '../actions/getNearestStations'
+import { connect } from 'react-redux';
+import { withTranslate } from 'react-redux-multilingual';
+import { getNearbyBikeStations } from '../actions/getNearestStations';
+import NearbyStation from '../components/nearbyStation';
 
 class NearbyStations extends Component {
-    constructor(props){
-        super(props);
-    }
-    componentDidUpdate(){
-        if (!(this.props.coords.lat===this.props.searchResults.coords.lat &&
-            this.props.coords.lng===this.props.searchResults.coords.lng)) {
-            this.props.getNearbyStations(
+
+    componentDidMount(){
+        this.props.getNearbyStations(
                 {lat: this.props.coords.lat, lng: this.props.coords.lng},
+                500
+           )
+    }
+    componentWillUpdate(nextProps, nextState){
+        if (nextProps.coords.lat!==nextProps.searchResults.coords.lat &&
+           nextProps.coords.lng!==nextProps.searchResults.coords.lng) {
+
+            this.props.getNearbyStations(
+                {lat: nextProps.searchResults.coords.lat, lng: nextProps.searchResults.coords.lng},
                 500
             )
         }
     }
     render() {
-        return (<div>
-            <ul>
-                nearby stations
-                <li>item 1</li>
-                <li>item 2</li>
-                <li>item 3</li>
-                <li>item 4</li>
-            </ul>
-            { this.props.coords.lat }
-        </div>)
+        if (this.props.stations===undefined) return null
+        const translations = {
+            distance: this.props.translate('distance')
+
+        }
+
+        return (<div><strong>{ this.props.translate('nearbyStations') }</strong> ({ this.props.stations.length })
+            { this.props.stations.map((station) => {
+                return (
+                    <div key={station.id} >
+                        <NearbyStation text={translations} station={ station } locale={this.props.locale} />
+                    </div>)
+            })
+            }
+            </div>)
     }
 }
 function mapStateToProps(state) {
-    const { rootReducer } = state;
+    const { rootReducer, Intl } = state;
     const { mapReducer, filterReducer, nearbyStationReducer, searchReducer } = rootReducer;
     const { stations, isFetchingStations,  error } = nearbyStationReducer;
+    const { locale }  = Intl;
     const { coords } = mapReducer;
     const { filter } = filterReducer;
     const { searchResults } = searchReducer;
@@ -43,7 +55,8 @@ function mapStateToProps(state) {
         error,
         coords,
         filter,
-        searchResults
+        searchResults,
+        locale
     }
 }
 const mapDispatchToEvents = (dispatch) => {
