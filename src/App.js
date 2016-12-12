@@ -23,13 +23,16 @@ class App extends Component {
                 resolve();
             }
         );
+
         prm.then(() => {
-            //todo: this needs to be separated as its not conforming to SRP
-            this.props.recenterMap({
+            if (this.props.searchResults!==undefined) {
+                this.props.recenterMap({
                     lat: this.props.searchResults.coords.lat,
                     lng: this.props.searchResults.coords.lng
                 });
+            }
         });
+
     }
     languageSelected(locale) {
         this.props.setLocale(locale);

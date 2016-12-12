@@ -3,7 +3,7 @@ import Map from '../components/map'
 import { connect } from 'react-redux'
 import { withTranslate } from 'react-redux-multilingual'
 import {getAllBikeStations, toggleBikeStationInfoWindow} from '../actions/getBikeStationsActions';
-import {zoomMap, recentreMap } from '../actions/mapActions'
+import {zoomMap, recenterMap } from '../actions/mapActions'
 
 class MapContainer  extends Component  {
     constructor(props) {
@@ -18,6 +18,15 @@ class MapContainer  extends Component  {
     {
         this.props.getAllBikeStations();
     }
+    /*
+    componentWillReceiveProps() {
+        if (this.props.searchResults !== "" ) {
+            this.props.recenterMap({
+                lat: this.props.searchResults.coords.lat,
+                lng: this.props.searchResults.coords.lng
+            });
+        }
+    }*/
     toggleInfoWindow(bikeStation)
     {
         this.props.toggleBikeStationInfoWindow(bikeStation);
@@ -48,32 +57,26 @@ class MapContainer  extends Component  {
             totalSpaces: this.props.translate('totalSpaces')
         };
         if (this.props.stations===undefined) return null;
-        return (/* // for testing
-            <div className="map-sidebar">
-                <ul>
-                    nearby stations
-                    <li>item 1 </li>
-                    <li>item 2 </li>
-                    <li>item 3 </li>
-                    <li>item 4 </li>
-                </ul>
-            </div>*/
+        return (
             <div style={{textAlign: 'left'}}>
-            <div className="map-body">
-                <Map centre={{lat: this.props.coords.lat, lng: this.props.coords.lng }}
-                     zoom={this.props.zoom}
-                     stations={ this.props.stations }
-                     displayColour={ this.displayColour}
-                     percentage={this.percentAvailable}
-                     toggleInfoWindow={this.toggleInfoWindow}
-                     infoWindowText={ translatedText }
-                     changeZoom={this.changeZoom}
-                     changeBounds={this.changeBounds}
-                     loadingMessage={this.props.translate('loading')}
-                     recenterMap={this.props.recenterMap}
-                     filter={this.props.filter}
-                />
-            </div>
+                <div className="map-body">
+                    <Map centre={{lat: this.props.coords.lat, lng: this.props.coords.lng }}
+                         zoom={this.props.zoom}
+                         stations={ this.props.stations }
+                         displayColour={ this.displayColour}
+                         percentage={this.percentAvailable}
+                         toggleInfoWindow={this.toggleInfoWindow}
+                         infoWindowText={ translatedText }
+                         changeZoom={this.changeZoom}
+                         changeBounds={this.changeBounds}
+                         loadingMessage={this.props.translate('loading')}
+                         recenterMap={this.props.recenterMap}
+                         filter={this.props.filter}
+                    />
+                </div>
+                <div className="map-sidebar">
+                    { this.props.children }
+                </div>
             </div>
         );
     }
@@ -105,7 +108,7 @@ const mapDispatchToEvents = (dispatch) => {
             dispatch(getAllBikeStations())
         },
         recenterMap: (coords) => {
-            dispatch(recentreMap(coords))
+            dispatch(recenterMap(coords))
         },
         zoomMap: (zoom) => {
             dispatch(zoomMap(zoom))
