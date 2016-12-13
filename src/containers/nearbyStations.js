@@ -26,11 +26,11 @@ class NearbyStations extends Component {
     render() {
         if (this.props.stations===undefined) return null
         const translations = {
-            distance: this.props.translate('distance')
-
+            distance: this.props.translate('distance'),
+            bikes: this.props.translate('bikes'),
+            spaces: this.props.translate('spaces')
         }
-
-        return (<div><strong>{ this.props.translate('nearbyStations') }</strong> ({ this.props.stations.length })
+        return (<div><h4>{ this.props.translate('nearbyStations') }</h4>
             { this.props.stations.map((station) => {
                 return (
                     <div key={station.id} >
