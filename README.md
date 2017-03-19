@@ -2,7 +2,7 @@
 
 A project created using the Transport for London (TfL) Unified API to access cycle hire scheme information
 
-
+You can see it running live at [https://github.com/ryananglem/london-bike-maps]()
 
 This project was bootstrapped with [Create React App](https://github.com/facebookincubator/create-react-app).
 
@@ -19,6 +19,7 @@ You can find the most recent version of this guide [here](https://github.com/fac
   - [npm test](#npm-test)
   - [npm run build](#npm-run-build)
   - [npm run eject](#npm-run-eject)
+  - [npm run deploy](#npm-run-deploy)
 - [Displaying Lint Output in the Editor](#displaying-lint-output-in-the-editor)
 - [Installing a Dependency](#installing-a-dependency)
 - [Importing a Component](#importing-a-component)
