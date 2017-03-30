@@ -2,7 +2,7 @@
 
 A project created using the Transport for London (TfL) Unified API to access cycle hire scheme information
 
-You can see it running live at [https://ryananglem.github.io/london-bike-maps/#/]()
+You can see it running live at [https://ryananglem.github.io/london-bike-maps/]()
 
 This project was bootstrapped with [Create React App](https://github.com/facebookincubator/create-react-app).
 
