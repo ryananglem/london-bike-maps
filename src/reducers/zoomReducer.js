@@ -1,3 +1,4 @@
+import * as types from '../actions/actionTypes';
 const initialState = {
     zoom: 14,
 
@@ -5,7 +6,7 @@ const initialState = {
 
 const zoomReducer = (state = initialState, action) => {
     switch (action.type) {
-        case 'ZOOM_MAP':
+        case types.ZOOM_MAP:
             return {
                 zoom: action.zoom
             };

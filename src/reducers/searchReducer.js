@@ -1,3 +1,4 @@
+import * as types from '../actions/actionTypes'
 const initialState = {
     searchText: '001088',
     searchResults: {
@@ -15,20 +16,20 @@ const initialState = {
 
 const searchReducer = (state = initialState, action) => {
     switch (action.type) {
-        case 'REQUEST_STATION_SEARCH':
+        case types.REQUEST_STATION_SEARCH:
             return {
                 searchText: action.searchText,
                 searchResults: ""
             };
-        case 'RECEIVE_STATION_SEARCH':
+        case types.RECEIVE_STATION_SEARCH:
             return {
                 searchResults: action.searchResults
             };
-        case 'NO_STATION_FOUND':
+        case types.NO_STATION_FOUND:
             return {
                 searchResults: action.searchResults
             };
-        case 'NO_SEARCH_TERM':
+        case types.NO_SEARCH_TERM:
             return {
                 searchResults: action.searchResults
             };

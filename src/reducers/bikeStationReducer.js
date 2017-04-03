@@ -1,3 +1,5 @@
+import * as types from '../actions/actionTypes'
+
 const initialState = {
     isFetchingStations:false,
     stations: [],
@@ -6,7 +8,7 @@ const initialState = {
 
 const bikeStation = (state, action) => {
     switch(action.type) {
-        case 'TOGGLE_BIKE_STATION_INFOWINDOW':
+        case types.TOGGLE_BIKE_STATION_INFOWINDOW:
             if (state.id !== action.bikeStation.id) {
                 return state;
             }
@@ -20,21 +22,21 @@ const bikeStation = (state, action) => {
 
 const bikeStationReducer = (state = initialState, action) => {
     switch (action.type) {
-        case 'REQUEST_ALL_BIKE_STATIONS':
+        case types.REQUEST_ALL_BIKE_STATIONS:
             return {
                 isFetchingStations: true
             };
-        case 'RECEIVE_ALL_BIKE_STATIONS':
+        case types.RECEIVE_ALL_BIKE_STATIONS:
             return {
                 isFetchingStations:  false ,
                 stations: action.stations
             };
-        case 'GET_ALL_BIKE_STATIONS_ERROR':
+        case types.GET_ALL_BIKE_STATIONS_ERROR:
             return {
                 isFetchingStations: false ,
                 error: action.error
             };
-        case 'TOGGLE_BIKE_STATION_INFOWINDOW':{
+        case types.TOGGLE_BIKE_STATION_INFOWINDOW:{
             return {stations: state.stations.map(station => bikeStation(station, action))};
         }
         default:

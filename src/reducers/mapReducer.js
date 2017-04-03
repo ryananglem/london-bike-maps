@@ -1,3 +1,5 @@
+import * as types from '../actions/actionTypes';
+
 const initialState = {
     coords: {
         lat: 51.506451,
@@ -7,7 +9,7 @@ const initialState = {
 
 const mapReducer = (state = initialState, action) => {
     switch (action.type) {
-        case 'RECENTER_MAP':
+        case types.RECENTER_MAP:
             return {
                 coords: action.coords
             };
