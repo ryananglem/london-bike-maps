@@ -1,19 +1,20 @@
+import * as types from './actionTypes'
 import { apiConfig } from './apiConfig'
 //import nearestStationStaticData from './static-data/nearestStationStaticData';
 
 export const requestNearbyBikeStations = () => ({
-    type: "REQUEST_NEARBY_BIKE_STATIONS",
+    type: types.REQUEST_NEARBY_BIKE_STATIONS,
     isFetchingStations: true
 });
 
 export const receiveNearbyBikeStations = stations => ({
-    type: "RECEIVE_NEARBY_BIKE_STATIONS",
+    type: types.RECEIVE_NEARBY_BIKE_STATIONS,
     isFetchingStations: false,
     stations
 });
 
 export const getNearbyBikeStationsError = error => ({
-    type: "GET_NEARBY_BIKE_STATIONS_ERROR",
+    type: types.GET_NEARBY_BIKE_STATIONS_ERROR,
     isFetchingStations: false,
     error
 });

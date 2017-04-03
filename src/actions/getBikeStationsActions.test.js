@@ -1,3 +1,4 @@
+import * as types from './actionTypes'
 import { getAllBikeStations,
         requestAllBikeStations,
         receiveAllBikeStations,
@@ -23,8 +24,8 @@ it('should get bike station data from api', () => {
         .mock(process.env.REACT_APP_TFL_SERVICE_URL + 'BikePoint' + apiConfig.apiKeyConfig, staticData);
 
     const expectedActions = [
-        { type: 'REQUEST_ALL_BIKE_STATIONS', isFetchingStations: true },
-        { type: 'RECEIVE_ALL_BIKE_STATIONS', stations: stations, isFetchingStations: false  }
+        { type: types.REQUEST_ALL_BIKE_STATIONS, isFetchingStations: true },
+        { type: types.RECEIVE_ALL_BIKE_STATIONS, stations: stations, isFetchingStations: false  }
     ];
     const store = mockStore({ stations: [] });
 
@@ -66,7 +67,7 @@ const stations = [
 it('should request all stations', () => {
 
     const expectedAction = {
-        type: 'REQUEST_ALL_BIKE_STATIONS',
+        type: types.REQUEST_ALL_BIKE_STATIONS,
         isFetchingStations: true
     };
     expect(requestAllBikeStations()).toEqual(expectedAction);
@@ -88,7 +89,7 @@ it('should receive all stations', () => {
 it('should handle error getting all stations', () => {
     const error = 'error!!';
     const expectedAction = {
-        type: 'GET_ALL_BIKE_STATIONS_ERROR',
+        type: types.GET_ALL_BIKE_STATIONS_ERROR,
         isFetchingStations: false,
         error
     };
@@ -98,7 +99,7 @@ it('should handle error getting all stations', () => {
 it('should toggle infowindow display attribute', () => {
     const bikeStation =  { id: 1, name:'North Greenwich', coords: { lat: 51.5, lng: 0 }, infoWindowIsOpen: true };
     const expectedAction = {
-        type: 'TOGGLE_BIKE_STATION_INFOWINDOW',
+        type: types.TOGGLE_BIKE_STATION_INFOWINDOW,
         bikeStation: bikeStation
     };
     expect(toggleBikeStationInfoWindow(bikeStation)).toEqual(expectedAction);

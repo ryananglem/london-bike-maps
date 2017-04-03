@@ -1,26 +1,27 @@
 import { apiConfig } from './apiConfig'
+import * as types from './actionTypes'
 //import staticData from './static-data/staticData'
 
 export const requestAllBikeStations = () => ({
-    type: "REQUEST_ALL_BIKE_STATIONS",
+    type: types.REQUEST_ALL_BIKE_STATIONS,
     isFetchingStations: true
 });
 
 export const receiveAllBikeStations = stations => ({
-    type: "RECEIVE_ALL_BIKE_STATIONS",
+    type: types.RECEIVE_ALL_BIKE_STATIONS,
     isFetchingStations: false,
     stations
 });
 
 export const getAllBikeStationsError = error => ({
-    type: "GET_ALL_BIKE_STATIONS_ERROR",
+    type: types.GET_ALL_BIKE_STATIONS_ERROR,
     isFetchingStations: false,
     error
 });
 
 export const toggleBikeStationInfoWindow = bikeStation => {
     return {
-        type: "TOGGLE_BIKE_STATION_INFOWINDOW",
+        type: types.TOGGLE_BIKE_STATION_INFOWINDOW,
         bikeStation
     }
 };

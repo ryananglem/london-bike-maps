@@ -1,6 +1,7 @@
 import React, {Component} from 'react';
 import Map from '../components/map'
 import { connect } from 'react-redux'
+import { bindActionCreators} from 'redux'
 import { withTranslate } from 'react-redux-multilingual'
 import {getAllBikeStations, toggleBikeStationInfoWindow} from '../actions/getBikeStationsActions';
 import {zoomMap, recenterMap } from '../actions/mapActions'

@@ -1,22 +1,23 @@
+import * as types from './actionTypes'
 
 export const requestStationSearch = (searchText) => ({
-    type: "REQUEST_STATION_SEARCH",
+    type: types.REQUEST_STATION_SEARCH,
     searchResults: "",
     searchText
 });
 
 export const receiveStationSearch= (searchResults) => ({
-    type: "RECEIVE_STATION_SEARCH",
+    type: types.RECEIVE_STATION_SEARCH,
     searchResults
 });
 
 export const noStationFound = () => ({
-    type: "NO_STATION_FOUND",
+    type: types.NO_STATION_FOUND,
     searchResults: ""
 });
 
 export const noSearchTerm = () => ({
-    type: "NO_SEARCH_TERM",
+    type: types.NO_SEARCH_TERM,
     searchResults: ""
 });
 

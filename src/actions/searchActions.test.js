@@ -1,3 +1,4 @@
+import * as types from './actionTypes'
 import {
     requestStationSearch,
     receiveStationSearch,
@@ -15,7 +16,7 @@ it('should request search', () => {
 
     const searchText = 'North';
     const expectedAction = {
-        type: 'REQUEST_STATION_SEARCH',
+        type: types.REQUEST_STATION_SEARCH,
         searchText: searchText,
         searchResults: ""
     };
@@ -25,7 +26,7 @@ it('should request search', () => {
 it('should receive search results', () => {
 
     const expectedAction = {
-        type: 'RECEIVE_STATION_SEARCH',
+        type: types.RECEIVE_STATION_SEARCH,
         searchResults: stations,
     };
     expect(receiveStationSearch(stations)).toEqual(expectedAction);
@@ -34,7 +35,7 @@ it('should receive search results', () => {
 it('should return no station found event', () => {
 
     const expectedAction = {
-        type: 'NO_STATION_FOUND',
+        type: types.NO_STATION_FOUND,
         searchResults: "",
     };
     expect(noStationFound()).toEqual(expectedAction);
@@ -43,7 +44,7 @@ it('should return no station found event', () => {
 it('should return no search term event', () => {
 
     const expectedAction = {
-        type: 'NO_SEARCH_TERM',
+        type: types.NO_SEARCH_TERM,
         searchResults: "",
     };
     expect(noSearchTerm()).toEqual(expectedAction);
@@ -53,8 +54,8 @@ it('should return value present in list when searching for stations',() => {
 
     const searchText  = "River Street , Clerkenwell";
     const expectedActions = [
-        { type: 'REQUEST_STATION_SEARCH', searchText: searchText, searchResults: "" },
-        { type: 'RECEIVE_STATION_SEARCH', searchResults:  {
+        { type: types.REQUEST_STATION_SEARCH, searchText: searchText, searchResults: "" },
+        { type: types.RECEIVE_STATION_SEARCH, searchResults:  {
             "bikes": "1",
             "coords": {
                 "lat": 51.529163,
@@ -77,8 +78,8 @@ it('should dispatch error when not item matching search during searching for sta
 
     const searchText  = 'Not here';
     const expectedActions = [
-        { type: 'REQUEST_STATION_SEARCH', searchText: searchText, searchResults: "" },
-        { type: 'NO_STATION_FOUND', searchResults: "" }
+        { type: types.REQUEST_STATION_SEARCH, searchText: searchText, searchResults: "" },
+        { type: types.NO_STATION_FOUND, searchResults: "" }
     ];
     const store = mockStore({ rootReducer: { bikeStationReducer: { stations: stations }}});
     store.dispatch(stationSearch(searchText));
@@ -89,7 +90,7 @@ it('should dispatch error when no search term present during search for stations
 
     const searchText  = '';
     const expectedActions = [
-        { type: 'NO_SEARCH_TERM', searchResults: "" }
+        { type: types.NO_SEARCH_TERM, searchResults: "" }
     ];
     const store = mockStore({ rootReducer: { bikeStationReducer: { stations: stations }}});
     store.dispatch(stationSearch(searchText));

@@ -1,3 +1,4 @@
+import * as types from './actionTypes'
 import { requestNearbyBikeStations,
     receiveNearbyBikeStations,
     getNearbyBikeStationsError,
@@ -29,8 +30,8 @@ it('should get nearest bike station data from api', () => {
             , staticData);
 
     const expectedActions = [
-        { type: 'REQUEST_NEARBY_BIKE_STATIONS', isFetchingStations: true },
-        { type: 'RECEIVE_NEARBY_BIKE_STATIONS', stations: stations, isFetchingStations: false  }
+        { type: types.REQUEST_NEARBY_BIKE_STATIONS, isFetchingStations: true },
+        { type: types.RECEIVE_NEARBY_BIKE_STATIONS, stations: stations, isFetchingStations: false  }
     ];
     const store = mockStore({ stations: [] });
 
@@ -65,7 +66,7 @@ const stations = [{
 it('should request nearest stations', () => {
 
     const expectedAction = {
-        type: 'REQUEST_NEARBY_BIKE_STATIONS',
+        type: types.REQUEST_NEARBY_BIKE_STATIONS,
         isFetchingStations: true
     };
     expect(requestNearbyBikeStations()).toEqual(expectedAction);
@@ -77,7 +78,7 @@ it('should receive nearby stations', () => {
         { id: 2, name:'King Edward Park', coords: { lat: 51.51, lng: -0.05 }}
     ];
     const expectedAction = {
-        type: 'RECEIVE_NEARBY_BIKE_STATIONS',
+        type: types.RECEIVE_NEARBY_BIKE_STATIONS,
         isFetchingStations: false,
         stations
     };
@@ -87,7 +88,7 @@ it('should receive nearby stations', () => {
 it('should handle error getting nearby stations', () => {
     const error = 'error!!';
     const expectedAction = {
-        type: 'GET_NEARBY_BIKE_STATIONS_ERROR',
+        type: types.GET_NEARBY_BIKE_STATIONS_ERROR,
         isFetchingStations: false,
         error
     };
