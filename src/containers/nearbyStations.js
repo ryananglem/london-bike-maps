@@ -41,7 +41,7 @@ class NearbyStations extends Component {
             </div>)
     }
 }
-function mapStateToProps(state) {
+const mapStateToProps=(state) => {
     const { rootReducer, Intl } = state;
     const { mapReducer, filterReducer, nearbyStationReducer, searchReducer } = rootReducer;
     const { stations, isFetchingStations,  error } = nearbyStationReducer;

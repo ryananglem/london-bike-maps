@@ -1,6 +1,7 @@
 import React, {Component} from 'react';
 import Map from '../components/map'
 import { connect } from 'react-redux'
+// eslint-disable-next-line
 import { bindActionCreators} from 'redux'
 import { withTranslate } from 'react-redux-multilingual'
 import {getAllBikeStations, toggleBikeStationInfoWindow} from '../actions/getBikeStationsActions';
@@ -73,7 +74,7 @@ class MapContainer  extends Component  {
         );
     }
 }
-function mapStateToProps(state) {
+const mapStateToProps=(state) =>  {
     const { rootReducer } = state;
     const { bikeStationReducer, mapReducer, zoomReducer, filterReducer, searchReducer } = rootReducer;
     const { stations, isFetchingStations,  error } = bikeStationReducer;
@@ -91,7 +92,7 @@ function mapStateToProps(state) {
         searchResults
     }
 }
-const mapDispatchToEvents = (dispatch) => {
+const mapDispatchToEvents=(dispatch) => {
     return {
         toggleBikeStationInfoWindow: (bikeStation) => {
             dispatch(toggleBikeStationInfoWindow(bikeStation))

@@ -14,7 +14,12 @@ export default {
       totalSpaces: 'total',
       search: 'Search name or terminal no..',
       nearbyStations: 'Nearest stations',
-      distance: 'distance'
+      distance: 'distance',
+      thisProjectUses: 'This project uses the',
+      projectApiDescription: 'TfL Unified API',
+      thisProjectReason: 'to provide live cycle hire station data',
+      writtenBy: 'It was written by',
+      technology: 'using React/Redux'
      }
   },
   se: {
@@ -32,7 +37,12 @@ export default {
           totalSpaces: 'totala ställen',
           search: 'sök namn eller terminal nummer..',
           nearbyStations: 'Närmaste terminaler',
-          distance: 'distans'
+          distance: 'distans',
+          thisProjectUses: 'Detta projekt använder',
+          projectApiDescription: 'TfL Unified API',
+          thisProjectReason: 'för att tillhandahålla cykelstationsdata',
+          writtenBy: 'Det ar av',
+          technology: 'med React/Redux'
     }
   }
 }

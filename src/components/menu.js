@@ -16,8 +16,8 @@ const flags = [
     }];
 
 class Menu extends Component {
-    constructor(props){
-        super(props);
+    constructor(props, context){
+        super(props, context);
         this.state = {
             searchText: ''
         };
@@ -58,7 +58,7 @@ class Menu extends Component {
                     <NavItem eventKey={5} href="#" onSelect={ () => this.props.searchStations(this.state.searchText) }>
                             <Glyphicon glyph="search" />
                     </NavItem>
-                    <NavItem eventKey={3} href="#">
+                    <NavItem eventKey={3} href="#/about" >
                             <Glyphicon glyph="cog" />
                     </NavItem>
                     <NavDropdown id="language-selector" title={ <span style={{ height: 20 + 'px'}}><img className="flag" alt={flag.locale}  src={flag.flag}  /></span> } eventKey={4} >
