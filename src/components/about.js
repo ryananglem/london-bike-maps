@@ -1,9 +1,10 @@
 import React, {PropTypes} from 'react';
 import cycleLogo from '../content/images/sc-partner.png'
 
-const About = ({ text}) => {
+const About = ({ text }) => {
     return (
         <div style={{ padding:10 + 'px', paddingTop: 50 + 'px', display: 'block', textAlign: 'center'}}>
+
             <h2 style={{ paddingBottom: 50 + 'px'}}>
                 { text.appName }
             </h2>

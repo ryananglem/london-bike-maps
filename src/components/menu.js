@@ -2,6 +2,8 @@ import React, { Component, PropTypes } from 'react';
 import {Navbar, NavItem, Grid, Nav, NavDropdown, MenuItem, Glyphicon, /* FormGroup, FormControl */} from 'react-bootstrap';
 import Swedish from '../content/images/Flag_of_Sweden.png';
 import British from '../content/images/Flag_of_United_Kingdom.png';
+import * as constants from '../config/constants'
+import { hashHistory } from 'react-router';
 
 import StationAutoComplete from './stationAutoComplete';
 
@@ -20,15 +22,21 @@ class Menu extends Component {
         super(props, context);
         this.state = {
             searchText: ''
-        };
-        this.onChange = this.onChange.bind(this);
+        }
     }
-
     onChange = (event, { newValue, method }) => {
         this.setState({
             searchText: newValue
         });
-    };
+    }
+    onChangeFilter = newFilter => {
+        this.props.changeFilter(newFilter)
+        hashHistory.push("/")
+    }
+    onSearch = searchText => {
+        this.props.searchStations(searchText)
+        hashHistory.push("/")
+    }
 
     render(){
     const flag = flags.find(f => f.locale === this.props.locale);
@@ -43,8 +51,8 @@ class Menu extends Component {
             </Navbar.Header>
             <Navbar.Collapse>
                 <Nav>
-                    <NavItem onSelect={() => this.props.changeFilter('BIKES_AVAILABLE')} active={ this.props.filter==='BIKES_AVAILABLE'} eventKey={1} href="#">{ this.props.text.bikes }</NavItem>
-                    <NavItem onSelect={() => this.props.changeFilter('PARKS_AVAILABLE')} active={ this.props.filter==='PARKS_AVAILABLE'} eventKey={2} href="#">{ this.props.text.spaces }</NavItem>
+                    <NavItem onSelect={() => this.onChangeFilter(constants.BIKES_AVAILABLE)} active={ this.props.filter===constants.BIKES_AVAILABLE} eventKey={1} href="#">{ this.props.text.bikes }</NavItem>
+                    <NavItem onSelect={() => this.onChangeFilter(constants.PARKS_AVAILABLE)} active={ this.props.filter===constants.PARKS_AVAILABLE} eventKey={2} href="#">{ this.props.text.spaces }</NavItem>
                 </Nav>
                 <Nav pullRight>
                     <NavItem>
@@ -55,7 +63,7 @@ class Menu extends Component {
                             getSuggestions={this.props.getSuggestions}
                         />
                     </NavItem>
-                    <NavItem eventKey={5} href="#" onSelect={ () => this.props.searchStations(this.state.searchText) }>
+                    <NavItem eventKey={5} href="#/" onSelect={ () => this.onSearch(this.state.searchText) }>
                             <Glyphicon glyph="search" />
                     </NavItem>
                     <NavItem eventKey={3} href="#/about" >
@@ -78,5 +86,5 @@ Menu.propTypes = {
     changeFilter: PropTypes.func.isRequired,
     filter: PropTypes.string.isRequired,
     searchStations: PropTypes.func.isRequired
-};
+}
 export default Menu

@@ -41,7 +41,7 @@ class NearbyStations extends Component {
             </div>)
     }
 }
-const mapStateToProps=(state) => {
+const mapStateToProps = state  => {
     const { rootReducer, Intl } = state;
     const { mapReducer, filterReducer, nearbyStationReducer, searchReducer } = rootReducer;
     const { stations, isFetchingStations,  error } = nearbyStationReducer;
@@ -59,7 +59,7 @@ const mapStateToProps=(state) => {
         locale
     }
 }
-const mapDispatchToEvents = (dispatch) => {
+const mapDispatchToEvents = dispatch => {
     return {
         getNearbyStations: (coords, radius) => {
             dispatch(getNearbyBikeStations(coords, radius))

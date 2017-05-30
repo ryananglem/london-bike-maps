@@ -9,6 +9,6 @@ it('should render nearby station info', () => {
         text={{ test: 'text'}}
      />);
 
-    expect(wrapper.contains('King Edward Park')).toBe(true);
+    expect(wrapper.contains('King Edward Park')).toEqual(true);
 });
 

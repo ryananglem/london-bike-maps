@@ -3,7 +3,7 @@ import { connect } from 'react-redux'
 import { withTranslate } from 'react-redux-multilingual'
 import About from '../components/about'
 
-class AboutContainer  extends Component  {
+class AboutContainer extends Component  {
     render() {
         const translatedText = {
             appName: this.props.translate('appName'),
@@ -18,14 +18,14 @@ class AboutContainer  extends Component  {
         );
     }
 }
-const mapStateToProps=(state) => {
+const mapStateToProps = state => {
     const { Intl } = state;
     const { locale }  = Intl;
     return {
         locale
     }
 }
-const mapDispatchToEvents = (dispatch) => {
+const mapDispatchToEvents = dispatch => {
     return {
 
     };

@@ -7,42 +7,29 @@ import { withTranslate } from 'react-redux-multilingual'
 import {getAllBikeStations, toggleBikeStationInfoWindow} from '../actions/getBikeStationsActions';
 import {zoomMap, recenterMap } from '../actions/mapActions'
 
-class MapContainer  extends Component  {
-    constructor(props) {
-        super(props);
-        this.toggleInfoWindow = this.toggleInfoWindow.bind(this);
-        this.changeBounds = this.changeBounds.bind(this);
-        this.changeZoom = this.changeZoom.bind(this);
-        this.displayColour = this.displayColour.bind(this);
-        this.percentAvailable = this.percentAvailable.bind(this);
-    }
-    componentDidMount()
-    {
+class MapContainer extends Component  {
+
+    componentDidMount = () =>  {
         this.props.getAllBikeStations();
     }
-    toggleInfoWindow(bikeStation)
-    {
+    toggleInfoWindow = (bikeStation) => {
         this.props.toggleBikeStationInfoWindow(bikeStation);
     }
-    percentAvailable(filter, station) {
+    percentAvailable = (filter, station) => {
         return (filter==="BIKES_AVAILABLE")
             ? (parseInt(station.bikes, 10) / parseInt(station.totalDocks, 10)) * 100
             : (parseInt(station.spaces, 10) / parseInt(station.totalDocks, 10)) * 100;
     }
-    displayColour(percentage) {
+    displayColour = (percentage) => {
         return (percentage < 10.0) ? 'danger' : (percentage < 20.0) ? 'warning' : 'success';
     }
-
-    changeBounds(coords)
-    {
+    changeBounds = (coords) =>  {
         //this.props.changeBounds()
     }
-    changeZoom(zoom)
-    {
+    changeZoom = (zoom) =>  {
         this.props.zoomMap(zoom);
     }
-    render()
-    {
+    render() {
         const translatedText = {
             bikesFree: this.props.translate('bikesFree'),
             spacesFree: this.props.translate('spacesFree'),
@@ -109,5 +96,3 @@ const mapDispatchToEvents=(dispatch) => {
     };
 };
 export default withTranslate(connect(mapStateToProps, mapDispatchToEvents)(MapContainer));
-
-

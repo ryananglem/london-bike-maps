@@ -1,18 +1,18 @@
 import React, {PropTypes} from 'react';
 import { ProgressBar } from 'react-bootstrap';
 
-const StationInfo = (props) => {
+const StationInfo = ({station, filter, text, displayColour, percentage}) => {
     return (
         <div>
-            <div><strong>{ props.station.name }</strong></div>
-            <span className="informational-text">{props.text.terminalName}: { props.station.terminalName } </span><br/>
-            { (props.filter==="BIKES_AVAILABLE") ?
-                <div>{props.text.bikesFree}: {props.station.bikes}</div>
+            <div><strong>{ station.name }</strong></div>
+            <span className="informational-text">{text.terminalName}: { station.terminalName } </span><br/>
+            { (filter==="BIKES_AVAILABLE") ?
+                <div>{text.bikesFree}: {station.bikes}</div>
                 :
-                <div>{props.text.spacesFree}: {props.station.spaces}</div>
+                <div>{text.spacesFree}: {station.spaces}</div>
             }
-            <div>{props.text.totalSpaces}: {props.station.totalDocks}</div>
-            <ProgressBar now={props.percentage} bsStyle={ props.displayColour } />
+            <div>{text.totalSpaces}: {station.totalDocks}</div>
+            <ProgressBar now={percentage} bsStyle={ displayColour } />
         </div>
     )
 };

@@ -38,6 +38,7 @@ export const stationSearch = (searchText) => {
             }
             else {
                 dispatch(receiveStationSearch(searchResults));
+                
             }
         }
         else {

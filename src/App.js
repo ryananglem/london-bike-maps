@@ -5,46 +5,35 @@ import { withTranslate, IntlActions } from 'react-redux-multilingual';
 import { filterByParks, filterByBikes } from './actions/filterActions';
 import { stationSearch } from './actions/searchActions';
 import { recenterMap } from './actions/mapActions';
+import * as constants from './config/constants'
 
 import Menu from './components/menu';
 
 class App extends Component {
-    constructor(props){
-        super(props);
-        this.languageSelected = this.languageSelected.bind(this);
-        this.changeFilter = this.changeFilter.bind(this);
-        this.getSuggestions = this.getSuggestions.bind(this);
-        this.searchStations = this.searchStations.bind(this);
-    }
-    searchStations(searchText) {
-        let prm = new Promise(
-            (resolve, reject) => {
-                this.props.searchStations(searchText);
-                resolve();
-            }
-        );
-        prm.then(() => {
+
+    searchStations = (searchText) => {
+
+        Promise.resolve( this.props.searchStations(searchText) ).then(() => {
             if (this.props.searchResults!==undefined) {
                 this.props.recenterMap({
                     lat: this.props.searchResults.coords.lat,
                     lng: this.props.searchResults.coords.lng
-                });
+                })
             }
-        });
-
+        })
     }
-    languageSelected(locale) {
+    languageSelected = (locale) => {
         this.props.setLocale(locale);
     }
-    changeFilter(filter){
-        if (filter==='BIKES_AVAILABLE') {
+    changeFilter = (filter) =>{
+        if (filter===constants.BIKES_AVAILABLE) {
             this.props.filterByBikes();
         }
         else {
             this.props.filterByParks();
         }
     }
-    getSuggestions(value) {
+    getSuggestions = (value) => {
         const inputValue = value.trim().toLowerCase();
         const inputLength = inputValue.length;
 
