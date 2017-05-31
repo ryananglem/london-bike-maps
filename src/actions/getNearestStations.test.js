@@ -5,41 +5,30 @@ import { requestNearbyBikeStations,
     getNearbyBikeStations
 } from './getNearestStations'
 
-import staticData from './static-data/nearestStationStaticData';
 import configureMockStore from 'redux-mock-store'
 import thunk from 'redux-thunk'
-import fetchMock from 'fetch-mock';
 
-import { apiConfig } from './apiConfig';
+jest.mock('../api/nearestStation.js')
 
 const middlewares = [ thunk ];
 const mockStore = configureMockStore(middlewares);
 
-it('should get nearest bike station data from api', () => {
-    process.env.REACT_APP_TFL_SERVICE_URL='https://api.tfl.gov.uk/';
-    process.env.REACT_APP_TFL_APPLICATION_KEY='9bad5c1b4fa4a3971fe0f7b55ebd643b';
-    process.env.REACT_APP_TFL_APPLICATION_ID='e9264262';
+it('should request and receive nearest bike station data from api', () => {
+
     const coords = { lat:51.529163 , lng:-0.10997 };
     const radius = 500;
-
-    fetchMock
-        .mock(process.env.REACT_APP_TFL_SERVICE_URL
-            + 'BikePoint'
-            + apiConfig.apiKeyConfig
-            + '&lat=' + coords.lat.toString() + '&lon=' + coords.lng.toString() +'&radius=' + radius.toString()
-            , staticData);
-
     const expectedActions = [
         { type: types.REQUEST_NEARBY_BIKE_STATIONS, isFetchingStations: true },
         { type: types.RECEIVE_NEARBY_BIKE_STATIONS, stations: stations, isFetchingStations: false  }
     ];
     const store = mockStore({ stations: [] });
+    const stationMock = require('../api/nearestStation').getNearbyStations.mockReturnValue(Promise.resolve(stations))
 
     return store.dispatch(getNearbyBikeStations(coords, radius))
         .then(() => { // return of async actions
             expect(store.getActions()).toEqual(expectedActions)
         })
-});
+})
 
 const stations = [{
     "bikes": "15",
