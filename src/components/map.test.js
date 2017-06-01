@@ -2,6 +2,7 @@ import React from 'react';
 import Map from './map';
 import { shallow } from 'enzyme';
 
+import * as constants from '../config/constants'
 it('should render map', () => {
     const stations = [
         { id: 1, name:'King Edward Park', coords: { lat: 51.5, lng: 0 }},
@@ -11,7 +12,7 @@ it('should render map', () => {
                                 stations={ stations }
                                 loadingMessage={'loading'}
                                 toggleInfoWindow={ () => { }}
-                                filter="PARKS_AVAILABLE"
+                                filter={constants.PARKS_AVAILABLE}
                                 infoWindowText={{ translatedText: 'test'}}
                                 displayColour={ ()=> {}}
                                 percentage={ () => {}}

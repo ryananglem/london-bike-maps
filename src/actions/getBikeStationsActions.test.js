@@ -29,6 +29,20 @@ it('should request and receive bike station data from api', () => {
         })
 
 });
+it('should handle error from api', () => {
+
+    const expectedActions = [
+        { type: types.REQUEST_ALL_BIKE_STATIONS, isFetchingStations: true },
+        { type: types.GET_ALL_BIKE_STATIONS_ERROR, isFetchingStations: false, error: "error"  }
+    ];
+    const store = mockStore({ stations: [] });
+    const stationMock = require('../api/allStations').getAllStations.mockReturnValue(Promise.reject({ message: 'error'}))
+
+    return store.dispatch(getAllBikeStations())
+        .then(() => { // return of async actiaons
+            expect(store.getActions()).toEqual(expectedActions)
+        })
+})
 
 const stations = [
     {
@@ -88,7 +102,7 @@ it('should handle error getting all stations', () => {
         error
     };
     expect(getAllBikeStationsError(error)).toEqual(expectedAction);
-});
+});q
 
 it('should toggle infowindow display attribute', () => {
     const bikeStation =  { id: 1, name:'North Greenwich', coords: { lat: 51.5, lng: 0 }, infoWindowIsOpen: true };

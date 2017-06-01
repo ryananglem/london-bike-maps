@@ -1,8 +1,9 @@
 import * as types from './actionTypes';
 import {filterByParks, filterByBikes} from './filterActions'
+import * as constants from '../config/constants'
 
 it('should filter by parks', () => {
-    const filter = "PARKS_AVAILABLE";
+    const filter = constants.PARKS_AVAILABLE;
     const expectedAction = {
         type: types.FILTER_BY_PARKS,
         filter: filter
@@ -11,7 +12,7 @@ it('should filter by parks', () => {
 });
 
 it('should filter by bikes', () => {
-    const filter = "BIKES_AVAILABLE";
+    const filter = constants.BIKES_AVAILABLE;
     const expectedAction = {
         type: types.FILTER_BY_BIKES,
         filter: filter

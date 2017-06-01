@@ -30,6 +30,25 @@ it('should request and receive nearest bike station data from api', () => {
         })
 })
 
+it('should handle error from api', () => {
+
+    const coords = { lat:51.529163 , lng:-0.10997 };
+    const radius = 500;
+    const expectedActions = [
+        { type: types.REQUEST_NEARBY_BIKE_STATIONS, isFetchingStations: true },
+        { type: types.GET_NEARBY_BIKE_STATIONS_ERROR, isFetchingStations: false, error: "error"  }
+    ];
+    const store = mockStore({ stations: [] });
+    const stationMock = require('../api/nearestStation').getNearbyStations.mockReturnValue(Promise.reject({ message: 'error'}))
+
+    return store.dispatch(getNearbyBikeStations(coords, radius))
+        .then(() => { // return of async actions
+            expect(store.getActions()).toEqual(expectedActions)
+        })
+})
+
+
+
 const stations = [{
     "bikes": "15",
     "coords": {"lat": 51.506451, "lng": -0.170279},

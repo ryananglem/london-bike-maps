@@ -1,12 +1,13 @@
 import React, {PropTypes} from 'react';
-import { ProgressBar } from 'react-bootstrap';
+import { ProgressBar } from 'react-bootstrap'
+import * as constants from '../config/constants'
 
 const StationInfo = ({station, filter, text, displayColour, percentage}) => {
     return (
         <div>
             <div><strong>{ station.name }</strong></div>
             <span className="informational-text">{text.terminalName}: { station.terminalName } </span><br/>
-            { (filter==="BIKES_AVAILABLE") ?
+            { (filter===constants.BIKES_AVAILABLE) ?
                 <div>{text.bikesFree}: {station.bikes}</div>
                 :
                 <div>{text.spacesFree}: {station.spaces}</div>
