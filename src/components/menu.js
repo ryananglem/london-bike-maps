@@ -41,7 +41,8 @@ class Menu extends Component {
 
     render(){
     const flag = flags.find(f => f.locale === this.props.locale);
-    return (
+    /* eslint-disable */
+    return (        
      <Navbar fluid inverse fixedTop >
         <Grid>
             <Navbar.Header>
@@ -77,8 +78,10 @@ class Menu extends Component {
                 </Nav>
             </Navbar.Collapse>
         </Grid>
-    </Navbar>
-    )}
+    </Navbar>    
+    )
+    /* eslint-enable */
+    }    
 }
 Menu.propTypes = {
     locale: PropTypes.string.isRequired,
