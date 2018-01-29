@@ -1,6 +1,7 @@
 {
   "name": "london-bike-maps",
   "version": "0.1.0",
+  "author": "Ryan Anglem",
   "homepage": "http://ryananglem.github.io/london-bike-maps",
   "private": true,
   "devDependencies": {
@@ -16,6 +17,7 @@
   "dependencies": {
     "bootstrap": "^3.3.7",
     "enzyme": "^2.6.0",
+    "prop-types": "^15.6.0",
     "react": "^15.4.1",
     "react-addons-update": "^15.4.1",
     "react-autosuggest": "^7.0.1",

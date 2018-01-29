@@ -1,9 +1,10 @@
-import React, { Component, PropTypes } from 'react';
+import React, { Component } from 'react';
 import {Navbar, NavItem, Grid, Nav, NavDropdown, MenuItem, Glyphicon, /* FormGroup, FormControl */} from 'react-bootstrap';
 import Swedish from '../content/images/Flag_of_Sweden.png';
 import British from '../content/images/Flag_of_United_Kingdom.png';
 import * as constants from '../config/constants'
 import { hashHistory } from 'react-router';
+import PropTypes from 'prop-types';
 
 import StationAutoComplete from './stationAutoComplete';
 

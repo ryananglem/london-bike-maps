@@ -1,5 +1,6 @@
-import React, { Component, PropTypes } from 'react';
+import React, { Component } from 'react';
 import ReactDOMServer from 'react-dom/server';
+import PropTypes from 'prop-types';
 
 import {Gmaps, InfoWindow , Marker, Circle } from 'react-gmaps';
 import BikeIcon from '../content/images/cycle-hire-pushpin-icon.gif'

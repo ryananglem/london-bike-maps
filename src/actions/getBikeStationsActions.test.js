@@ -102,7 +102,7 @@ it('should handle error getting all stations', () => {
         error
     };
     expect(getAllBikeStationsError(error)).toEqual(expectedAction);
-});q
+});
 
 it('should toggle infowindow display attribute', () => {
     const bikeStation =  { id: 1, name:'North Greenwich', coords: { lat: 51.5, lng: 0 }, infoWindowIsOpen: true };
