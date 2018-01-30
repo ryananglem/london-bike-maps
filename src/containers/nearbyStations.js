@@ -12,7 +12,7 @@ class NearbyStations extends Component {
                 {lat: this.props.coords.lat, lng: this.props.coords.lng},
                 500
            )
-    }
+    }    
     componentWillUpdate(nextProps, nextState){
         if (nextProps.coords.lat!==nextProps.searchResults.coords.lat &&
            nextProps.coords.lng!==nextProps.searchResults.coords.lng) {

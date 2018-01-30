@@ -5,7 +5,8 @@ import { connect } from 'react-redux'
 import { bindActionCreators} from 'redux'
 import { withTranslate } from 'react-redux-multilingual'
 import {getAllBikeStations, toggleBikeStationInfoWindow} from '../actions/getBikeStationsActions';
-import {zoomMap, recenterMap } from '../actions/mapActions'
+import {zoomMap, recenterMap } from '../actions/mapActions';
+import NearbyStations from './nearbyStations';
 
 class MapContainer extends Component  {
 
@@ -55,7 +56,7 @@ class MapContainer extends Component  {
                     />
                 </div>
                 <div className="map-sidebar">
-                    { this.props.children }
+                    <NearbyStations />                    
                 </div>
             </div>
         );

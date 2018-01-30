@@ -12,15 +12,17 @@ import Menu from './components/menu';
 class App extends Component {
 
     searchStations = (searchText) => {
-
-        Promise.resolve( this.props.searchStations(searchText) ).then(() => {
-            if (this.props.searchResults!==undefined) {
-                this.props.recenterMap({
-                    lat: this.props.searchResults.coords.lat,
-                    lng: this.props.searchResults.coords.lng
-                })
-            }
-        })
+        if (searchText) {
+            Promise.resolve( this.props.searchStations(searchText) )
+                .then(() => {
+                    if (this.props.searchResults!==undefined) {
+                        this.props.recenterMap({
+                            lat: this.props.searchResults.coords.lat,
+                            lng: this.props.searchResults.coords.lng
+                        })
+                    }
+            })
+        }
     }
     languageSelected = (locale) => {
         this.props.setLocale(locale);

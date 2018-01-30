@@ -19,7 +19,7 @@ const searchReducer = (state = initialState, action) => {
         case types.REQUEST_STATION_SEARCH:
             return {
                 searchText: action.searchText,
-                searchResults: ""
+                searchResults: null
             };
         case types.RECEIVE_STATION_SEARCH:
             return {

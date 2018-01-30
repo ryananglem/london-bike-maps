@@ -4,7 +4,7 @@ import searchReducer from './searchReducer';
 
 const initialState = {
     searchText:'',
-    searchResults: ""
+    searchResults: null
 };
 
 const stations = [
@@ -19,7 +19,7 @@ it('requests a station search', () => {
     const newState = searchReducer(initialState, action);
 
     expect(newState.searchText).toEqual(searchText);
-    expect(newState.searchResults).toEqual("");
+    expect(newState.searchResults).toEqual(null);
 });
 
 it('receives a station search', () => {
@@ -34,12 +34,12 @@ it('station search returns no results', () => {
     const action = noStationFound();
     const newState = searchReducer(initialState, action);
 
-    expect(newState.searchResults).toEqual("");
+    expect(newState.searchResults).toEqual(null);
 });
 
 it('station search term is empty', () => {
     const action = noSearchTerm();
     const newState = searchReducer(initialState, action);
 
-    expect(newState.searchResults).toEqual("");
+    expect(newState.searchResults).toEqual(null);
 });

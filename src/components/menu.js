@@ -3,7 +3,8 @@ import {Navbar, NavItem, Grid, Nav, NavDropdown, MenuItem, Glyphicon, /* FormGro
 import Swedish from '../content/images/Flag_of_Sweden.png';
 import British from '../content/images/Flag_of_United_Kingdom.png';
 import * as constants from '../config/constants'
-import { hashHistory } from 'react-router';
+
+import { withRouter } from "react-router-dom";
 import PropTypes from 'prop-types';
 
 import StationAutoComplete from './stationAutoComplete';
@@ -32,22 +33,21 @@ class Menu extends Component {
     }
     onChangeFilter = newFilter => {
         this.props.changeFilter(newFilter)
-        hashHistory.push("/")
+        this.props.history.push("/")
     }
     onSearch = searchText => {
         this.props.searchStations(searchText)
-        hashHistory.push("/")
+        this.props.history.push("/")
     }
 
     render(){
-    const flag = flags.find(f => f.locale === this.props.locale);
-    /* eslint-disable */
+    const flag = flags.find(f => f.locale === this.props.locale);    
     return (        
      <Navbar fluid inverse fixedTop >
         <Grid>
             <Navbar.Header>
                 <Navbar.Brand>
-                    <a href="#">{ this.props.text.appName }</a>
+                    <a href="/">{ this.props.text.appName }</a>
                 </Navbar.Brand>
                 <Navbar.Toggle />
             </Navbar.Header>
@@ -65,22 +65,25 @@ class Menu extends Component {
                             getSuggestions={this.props.getSuggestions}
                         />
                     </NavItem>
-                    <NavItem eventKey={5} href="#/" onSelect={ () => this.onSearch(this.state.searchText) }>
+                    <NavItem eventKey={5} href="#" onSelect={ () => this.onSearch(this.state.searchText) }>
                             <Glyphicon glyph="search" />
                     </NavItem>
-                    <NavItem eventKey={3} href="#/about" >
+                    <NavItem eventKey={3} href="/about" >
                             <Glyphicon glyph="cog" />
                     </NavItem>
                     <NavDropdown id="language-selector" title={ <span style={{ height: 20 + 'px'}}><img className="flag" alt={flag.locale}  src={flag.flag}  /></span> } eventKey={4} >
-                    <MenuItem onSelect={() => this.props.languageSelected('en')} eventKey={'en'}><img className="flag" src={British} alt="British Flag"/> English</MenuItem>
-                    <MenuItem onSelect={() => this.props.languageSelected('se')} eventKey={'se'}><img className="flag" src={Swedish} alt="Svenska Flagga"/>Svenska</MenuItem>
+                    <MenuItem onSelect={() => this.props.languageSelected('en')} eventKey={'en'}>
+                            <img className="flag" src={British} alt="British Flag"/> English
+                    </MenuItem>
+                    <MenuItem onSelect={() => this.props.languageSelected('se')} eventKey={'se'}>
+                            <img className="flag" src={Swedish} alt="Svenska Flagga"/>Svenska
+                    </MenuItem>
                 </NavDropdown>
                 </Nav>
             </Navbar.Collapse>
         </Grid>
     </Navbar>    
     )
-    /* eslint-enable */
     }    
 }
 Menu.propTypes = {
@@ -91,4 +94,4 @@ Menu.propTypes = {
     filter: PropTypes.string.isRequired,
     searchStations: PropTypes.func.isRequired
 }
-export default Menu
+export default withRouter(Menu);

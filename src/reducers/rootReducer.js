@@ -4,7 +4,9 @@ import mapReducer from './mapReducer';
 import zoomReducer from './zoomReducer';
 import filterReducer from './filterReducer';
 import searchReducer from './searchReducer';
-import nearbyStationReducer from './nearbyStationReducer'
+import nearbyStationReducer from './nearbyStationReducer';
+import { reducer as formReducer } from 'redux-form';
+// import { routerReducer } from 'react-router-redux';
 
 export default combineReducers({
     bikeStationReducer,
@@ -12,5 +14,7 @@ export default combineReducers({
     zoomReducer,
     filterReducer,
     searchReducer,
-    nearbyStationReducer
+    nearbyStationReducer,
+    form: formReducer,
+    // routing: routerReducer
 })

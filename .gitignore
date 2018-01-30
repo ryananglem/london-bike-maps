@@ -16,3 +16,6 @@ npm-debug.log
 
 # sonarscan
 .scannerwork
+
+# bash crash file
+bash.exe.stackdump
