@@ -1,6 +1,6 @@
 import React from 'react';
-import {shallow} from 'enzyme';
-//import ReactDOM from 'react-dom';
+// import { shallow } from 'enzyme';
+import ShallowRenderer from 'react-test-renderer/shallow';
 import App from './App';
 
 it('renders without crashing', () => {
@@ -9,5 +9,6 @@ it('renders without crashing', () => {
     let translate = jest.fn();
 
     //ReactDOM.render(<App />, div);
-    shallow(<App  />);
+    const shallow = new ShallowRenderer();
+    const wrapper= shallow.render(<App  />);
 });

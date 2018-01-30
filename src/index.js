@@ -3,7 +3,8 @@ import ReactDOM from 'react-dom';
 import routes from './config/routes'
 import './index.css';
 import 'bootstrap/dist/css/bootstrap.css';
-import 'bootstrap/dist/css/bootstrap-theme.css';
+import 'bootstrap/dist/css/bootstrap-theme.css'
+
 import createBrowserHistory from 'history/createBrowserHistory';
 import { Router } from 'react-router';
 import { syncHistoryWithStore, routerReducer as routing } from 'react-router-redux';

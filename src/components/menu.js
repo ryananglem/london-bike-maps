@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import {Navbar, NavItem, Grid, Nav, NavDropdown, MenuItem, Glyphicon, /* FormGroup, FormControl */} from 'react-bootstrap';
+import {Navbar, NavItem, Grid, Nav, NavDropdown, MenuItem, Glyphicon } from 'react-bootstrap';
 import Swedish from '../content/images/Flag_of_Sweden.png';
 import British from '../content/images/Flag_of_United_Kingdom.png';
 import * as constants from '../config/constants'
