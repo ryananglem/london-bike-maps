@@ -18,7 +18,7 @@
     "prop-types": "^15.6.0",
     "react": "^16.2.0",
     "react-addons-test-utils": "^15.6.2",
-    "react-autosuggest": "^7.0.1",
+    "react-autosuggest": "^9.0.1",
     "react-bootstrap": "^0.32.1",
     "react-dom": "^16.2.0",
     "react-gmaps": "^1.5.0",

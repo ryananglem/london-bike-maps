@@ -1,4 +1,3 @@
-/*
 import React from 'react';
 // import {shallow} from 'enzyme';
 import ShallowRenderer from 'react-test-renderer/shallow';
@@ -20,7 +19,4 @@ it('renders menu without crashing', () => {
     />);
     
 });
-*/
-it('tests nothing', () => {
-    
-});
+
