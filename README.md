@@ -2,6 +2,7 @@
 ## london-bike-maps
 
 [![Build Status](https://travis-ci.org/ryananglem/london-bike-maps.svg?branch=master)](https://travis-ci.org/ryananglem/london-bike-maps)
+[![Quality Gate](https://sonarcloud.io/api/badges/gate?key=london-bike-maps)](https://sonarcloud.io/dashboard/index/london-bike-maps)
 
 A project created using the Transport for London (TfL) Unified API to access cycle hire scheme information
 
