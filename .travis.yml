@@ -6,7 +6,7 @@ cache:
   directories:
     - node_modules
 script:
-  - yarn test
+  - yarn test -- --coverage
 #  - npm run build
 #deploy:
 #  provider: pages
