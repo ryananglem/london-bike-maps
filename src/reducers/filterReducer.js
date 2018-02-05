@@ -7,13 +7,10 @@ const initialState = {
 const filterReducer = (state = initialState, action) => {
     switch (action.type) {
         case types.FILTER_BY_PARKS:
-            return {
-                filter: action.filter
-            };
         case types.FILTER_BY_BIKES:
             return {
                 filter: action.filter
-            };
+            };        
         default:
             return state;
     }
