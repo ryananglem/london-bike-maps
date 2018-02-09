@@ -9,7 +9,7 @@ import * as constants from './config/constants'
 
 import Menu from './components/menu';
 
-class App extends Component {
+class App extends Component {   
 
     searchStations = (searchText) => {
         if (searchText) {
@@ -34,7 +34,7 @@ class App extends Component {
         else {
             this.props.filterByParks();
         }
-    }
+    }    
     getSuggestions = (value) => {
         const inputValue = value.trim().toLowerCase();
         const inputLength = inputValue.length;
@@ -43,7 +43,7 @@ class App extends Component {
             lang.name.toLowerCase().slice(0, inputLength) === inputValue
         );
     }
-    render() {
+    render() {        
         const translatedText = {
             spaces: this.props.translate('spaces'),
             bikes: this.props.translate('bikes'),

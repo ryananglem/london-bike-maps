@@ -1,17 +1,20 @@
 import React, {Component} from 'react';
 import Map from '../components/map'
 import { connect } from 'react-redux'
+// import { geolocated } from 'react-geolocated';
+
 // eslint-disable-next-line
 import { bindActionCreators} from 'redux'
 import { withTranslate } from 'react-redux-multilingual'
-import {getAllBikeStations, toggleBikeStationInfoWindow} from '../actions/getBikeStationsActions';
-import {zoomMap, recenterMap } from '../actions/mapActions';
+import { getAllBikeStations, toggleBikeStationInfoWindow } from '../actions/getBikeStationsActions';
+import { zoomMap, recenterMap /*, getLocation*/ } from '../actions/mapActions';
 import NearbyStations from './nearbyStations';
 
 class MapContainer extends Component  {
 
     componentDidMount = () =>  {
         this.props.getAllBikeStations();
+        // this.props.getLocation();
     }
     toggleInfoWindow = (bikeStation) => {
         this.props.toggleBikeStationInfoWindow(bikeStation);
@@ -93,7 +96,17 @@ const mapDispatchToEvents=(dispatch) => {
         },
         zoomMap: (zoom) => {
             dispatch(zoomMap(zoom))
-        }
+        }//,
+        //getLocation: () => {
+        //    dispatch(getLocation())
+        //}
     };
 };
 export default withTranslate(connect(mapStateToProps, mapDispatchToEvents)(MapContainer));
+/*
+export default geolocated({
+    positionOptions: {
+      enableHighAccuracy: false,
+    },
+    userDecisionTimeout: 5000,
+  })(withTranslate(connect(mapStateToProps, mapDispatchToEvents)(MapContainer)));*/

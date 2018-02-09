@@ -21,6 +21,7 @@
     "react-autosuggest": "^9.0.1",
     "react-bootstrap": "^0.32.1",
     "react-dom": "^16.2.0",
+    "react-geolocated": "^2.3.0",
     "react-gmaps": "^1.5.0",
     "react-redux": "^4.4.6",
     "react-redux-i18n": "^0.1.0",
@@ -39,7 +40,7 @@
     "build": "react-scripts build",
     "test": "react-scripts test --env=jsdom",
     "eject": "react-scripts eject",
-    "deploy": "gh-pages -d build"    
+    "deploy": "gh-pages -d build"
   },
   "jest": {
     "collectCoverageFrom": [

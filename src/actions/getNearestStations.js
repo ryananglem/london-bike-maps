@@ -29,7 +29,7 @@ export const getNearbyBikeStations = (coords, radius) => {
             .then( stations => {
                 dispatch(receiveNearbyBikeStations(stations))
         }).catch( err=> {
-            dispatch(getNearbyBikeStationsError(err.message));
+                dispatch(getNearbyBikeStationsError(err.message));
         });
     }
 }
