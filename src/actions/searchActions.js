@@ -25,7 +25,7 @@ export const stationSearch = (searchText) => {
     return (dispatch, getState) => {
         if (searchText) {
           dispatch(requestStationSearch(searchText));
-            const stations = getState().rootReducer.bikeStationReducer.stations;
+            const stations = getState().rootReducer.bikeStation.stations;
             let searchResults;
             if (isNaN(searchText)) {
                 searchResults = stations.find(s => s.name.toLowerCase() === searchText.toLowerCase())

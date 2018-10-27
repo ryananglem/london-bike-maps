@@ -9,7 +9,7 @@ it('filters the map for available parks', () => {
     const action = filterByParks();
 
     const newState = filterReducer(initialState, action);
-    expect(newState.filter).toEqual('PARKS_AVAILABLE');
+    expect(newState.value).toEqual('PARKS_AVAILABLE');
 });
 
 
@@ -17,5 +17,5 @@ it('filters the map for available bikes', () => {
     const action = filterByBikes();
 
     const newState = filterReducer(initialState, action);
-    expect(newState.filter).toEqual('BIKES_AVAILABLE');
+    expect(newState.value).toEqual('BIKES_AVAILABLE');
 });

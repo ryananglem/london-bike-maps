@@ -1,7 +1,7 @@
 import * as types from '../actions/actionTypes'
 
 const initialState = {
-    filter: 'BIKES_AVAILABLE'
+    value: 'BIKES_AVAILABLE'
 };
 
 const filterReducer = (state = initialState, action) => {
@@ -9,7 +9,7 @@ const filterReducer = (state = initialState, action) => {
         case types.FILTER_BY_PARKS:
         case types.FILTER_BY_BIKES:
             return {
-                filter: action.filter
+                value: action.filter
             };        
         default:
             return state;

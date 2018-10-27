@@ -9,12 +9,12 @@ import { reducer as formReducer } from 'redux-form';
 // import { routerReducer } from 'react-router-redux';
 
 export default combineReducers({
-    bikeStationReducer,
-    mapReducer,
-    zoomReducer,
-    filterReducer,
-    searchReducer,
-    nearbyStationReducer,
+    bikeStation: bikeStationReducer,
+    map: mapReducer,
+    zoom: zoomReducer,
+    filter: filterReducer,
+    search: searchReducer,
+    nearbyStation: nearbyStationReducer,
     form: formReducer,
     // routing: routerReducer
 })

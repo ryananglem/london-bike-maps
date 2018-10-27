@@ -8,7 +8,7 @@ const zoomReducer = (state = initialState, action) => {
     switch (action.type) {
         case types.ZOOM_MAP:
             return {
-                zoom: action.zoom
+                level: action.zoom
             };
         default:
             return state;

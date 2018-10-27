@@ -16,9 +16,9 @@ import { createStore, compose, combineReducers, applyMiddleware } from 'redux';
 import { Provider } from 'react-redux';
 import thunk from 'redux-thunk'
 
-import rootReducer from './reducers/rootReducer';
+import root from './reducers/rootReducer';
 const reducers = combineReducers(Object.assign({},
-    { Intl, rootReducer, routing }
+    { Intl, root, routing }
     ));
 
 const store = createStore(reducers, compose(

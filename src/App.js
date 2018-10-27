@@ -56,7 +56,7 @@ class App extends Component {
                 text={translatedText}
                 languageSelected={this.languageSelected}
                 locale={this.props.locale}
-                filter={this.props.filter}
+                filter={this.props.filterValue}
                 changeFilter={this.changeFilter}
                 searchStations={this.searchStations}
                 getSuggestions={this.getSuggestions}
@@ -66,15 +66,15 @@ class App extends Component {
     }
 }
 function mapStateToProps(state) {
-    const { Intl, rootReducer } = state;
-    const { filterReducer, bikeStationReducer, searchReducer } = rootReducer;
-    const { stations } =  bikeStationReducer;
-    const { searchResults } = searchReducer;
+    const { Intl, root } = state;
+    const { filter, bikeStation, search } = root;
+    const { stations } =  bikeStation;
+    const { searchResults } = search;
     const { locale }  = Intl;
-    const { filter } = filterReducer;
+    const { value } = filter;
     return {
         locale,
-        filter,
+        filterValue: value,
         stations,
         searchResults
     }

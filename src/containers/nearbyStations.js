@@ -42,19 +42,19 @@ class NearbyStations extends Component {
     }
 }
 const mapStateToProps = state  => {
-    const { rootReducer, Intl } = state;
-    const { mapReducer, filterReducer, nearbyStationReducer, searchReducer } = rootReducer;
-    const { stations, isFetchingStations,  error } = nearbyStationReducer;
+    const { root, Intl } = state;
+    const { map, filter, nearbyStation, search } = root;
+    const { stations, isFetchingStations,  error } = nearbyStation;
     const { locale }  = Intl;
-    const { coords } = mapReducer;
-    const { filter } = filterReducer;
-    const { searchResults } = searchReducer;
+    const { coords } = map;
+    const { value } = filter;
+    const { searchResults } = search;
     return {
         isFetchingStations,
         stations,
         error,
         coords,
-        filter,
+        filterValue: value,
         searchResults,
         locale
     }

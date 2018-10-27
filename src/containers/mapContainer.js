@@ -42,7 +42,7 @@ class MapContainer extends Component  {
             <div style={{textAlign: 'left'}}>
                 <div className="map-body">
                     <Map centre={{lat: this.props.coords.lat, lng: this.props.coords.lng }}
-                         zoom={this.props.zoom}
+                         zoom={this.props.level}
                          stations={ this.props.stations }
                          displayColour={ this.displayColour}
                          percentage={this.percentAvailable}
@@ -52,7 +52,7 @@ class MapContainer extends Component  {
                          changeBounds={this.changeBounds}
                          loadingMessage={this.props.translate('loading')}
                          recenterMap={this.props.recenterMap}
-                         filter={this.props.filter}
+                         filter={this.props.filterValue}
                     />
                 </div>
                 <div className="map-sidebar">
@@ -63,20 +63,20 @@ class MapContainer extends Component  {
     }
 }
 const mapStateToProps=(state) =>  {
-    const { rootReducer } = state;
-    const { bikeStationReducer, mapReducer, zoomReducer, filterReducer, searchReducer } = rootReducer;
-    const { stations, isFetchingStations,  error } = bikeStationReducer;
-    const { searchResults } = searchReducer;
-    const { coords } = mapReducer;
-    const { zoom } = zoomReducer;
-    const { filter } = filterReducer;
+    const { root } = state;
+    const { bikeStation, map, zoom, filter, search } = root;
+    const { stations, isFetchingStations,  error } = bikeStation;
+    const { searchResults } = search;
+    const { coords } = map;
+    const { level } = zoom;
+    const { value } = filter;
     return {
         isFetchingStations,
         stations,
         error,
         coords,
-        zoom,
-        filter,
+        level,
+        filterValue: value,
         searchResults
     }
 }
