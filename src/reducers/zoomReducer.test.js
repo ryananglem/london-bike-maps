@@ -9,5 +9,5 @@ it('zooms the map', () => {
 
     const newState = zoomReducer(initialState, action);
 
-    expect(newState.zoom).toEqual(12);
+    expect(newState.level).toEqual(12);
 });

@@ -8,8 +8,6 @@ import {getAllBikeStations, toggleBikeStationInfoWindow} from '../actions/getBik
 import {zoomMap, recenterMap } from '../actions/mapActions';
 import NearbyStations from './nearbyStations';
 
-import * as selectors from '../selectors';
-
 class MapContainer extends Component  {
 
     componentDidMount = () =>  {
