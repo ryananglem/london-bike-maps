@@ -8,6 +8,8 @@ import {getAllBikeStations, toggleBikeStationInfoWindow} from '../actions/getBik
 import {zoomMap, recenterMap } from '../actions/mapActions';
 import NearbyStations from './nearbyStations';
 
+import * as selectors from '../selectors';
+
 class MapContainer extends Component  {
 
     componentDidMount = () =>  {
@@ -77,7 +79,7 @@ const mapStateToProps=(state) =>  {
         coords,
         level,
         filterValue: value,
-        searchResults
+        searchResults        
     }
 }
 const mapDispatchToEvents=(dispatch) => {
