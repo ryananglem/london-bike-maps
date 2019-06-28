@@ -2,7 +2,7 @@
   "name": "london-bike-maps",
   "version": "0.1.1",
   "author": "Ryan Anglem",
-  "homepage": "http://ryananglem.github.io/london-bike-maps",
+  "homepage": "http://london-bike-maps.s3-website.eu-west-2.amazonaws.com",
   "private": true,
   "devDependencies": {
     "fetch-mock": "^5.5.0",

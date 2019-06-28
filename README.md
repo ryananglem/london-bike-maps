@@ -5,7 +5,7 @@
 
 A project created using the Transport for London (TfL) Unified API to access cycle hire scheme information
 
-You can see it running live at [https://ryananglem.github.io/london-bike-maps/#/](https://ryananglem.github.io/london-bike-maps/#/)
+You can see it running live at [http://london-bike-maps.s3-website.eu-west-2.amazonaws.com/](http://london-bike-maps.s3-website.eu-west-2.amazonaws.com/)
 
 This project was bootstrapped with [Create React App](https://github.com/facebookincubator/create-react-app).
 
@@ -31,8 +31,3 @@ Runs the tests and produces a coverage report
 
 Builds the app for production to the `build` folder.<br>
 It correctly bundles React in production mode and optimizes the build for the best performance.
-
-### `yarn run deploy`
-
-This deploys the current build to the web. The site is hosted using github pages at:
-https://ryananglem.github.io/london-bike-maps/#/
