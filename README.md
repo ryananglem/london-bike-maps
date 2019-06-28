@@ -9,7 +9,7 @@ You can see it running live at [https://ryananglem.github.io/london-bike-maps/#/
 
 This project was bootstrapped with [Create React App](https://github.com/facebookincubator/create-react-app).
 
-It uses [Travis CI](https://travis-ci.org/) for continuous integration and [Sonarqube](https://sonarcloud.io/organizations/ryananglem-github/projects) for code analysis
+It uses [Travis CI](https://travis-ci.org/) for continuous integration and [Sonarqube](https://sonarcloud.io/dashboard?id=london-bike-maps) for code analysis
 
 Below you will find some information on how to perform common tasks.<br>
 You can find the most recent version of the create-react-app guide [here](https://github.com/facebookincubator/create-react-app/blob/master/packages/react-scripts/template/README.md).
