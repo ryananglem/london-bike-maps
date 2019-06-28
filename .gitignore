@@ -19,3 +19,6 @@ npm-debug.log
 
 # bash crash file
 bash.exe.stackdump
+
+# ide setup
+.vscode
