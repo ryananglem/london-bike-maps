@@ -17,7 +17,7 @@
   .map-sidebar {
     margin-top: 0px;
     padding-top: 0px;
-    padding-left: 0px;
+    padding-left: 10px;
   }
 }
 @media (min-width: 455px) {
@@ -32,7 +32,7 @@
     margin-top: 30px;
     padding-top: 30px;
     padding-left: 2%;
-    height: calc(100vh-30px);
+    height: calc(100%-30px);
     width: calc(30%);
     overflow: auto;
   }
