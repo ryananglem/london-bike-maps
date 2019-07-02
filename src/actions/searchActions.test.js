@@ -69,7 +69,12 @@ it("should return value present in list when searching for stations", () => {
         terminalName: "001023",
         totalDocks: "19"
       }
-    }
+    },
+    {
+      type: types.RECENTER_MAP,
+      coords: { lat: 51.529163, lng: -0.10997 }
+    },
+    { isFetchingStations: true, type: "REQUEST_NEARBY_BIKE_STATIONS" }
   ];
   const store = mockStore({
     root: { bikeStation: { stations: stations } }

@@ -3,25 +3,16 @@ import "./App.css";
 import { connect } from "react-redux";
 import { withTranslate, IntlActions } from "react-redux-multilingual";
 import { filterByParks, filterByBikes } from "./actions/filterActions";
-import { stationSearch } from "./actions/searchActions";
+import { stationSearch /*, selectStation */ } from "./actions/searchActions";
 import { recenterMap } from "./actions/mapActions";
 import * as constants from "./config/constants";
 
 import Menu from "./components/menu";
 
 class App extends Component {
-  searchStations = searchText => {
-    if (searchText) {
-      Promise.resolve(this.props.searchStations(searchText)).then(() => {
-        if (this.props.searchResults !== undefined) {
-          this.props.recenterMap({
-            lat: this.props.searchResults.coords.lat,
-            lng: this.props.searchResults.coords.lng
-          });
-        }
-      });
-    }
-  };
+  searchStations = searchText =>
+    searchText && this.props.searchStations(searchText);
+
   languageSelected = locale => {
     this.props.setLocale(locale);
   };
@@ -61,6 +52,7 @@ class App extends Component {
           changeFilter={this.changeFilter}
           searchStations={this.searchStations}
           getSuggestions={this.getSuggestions}
+          setSelectedValue={this.props.setSelectedValue}
         />
         {this.props.children}
       </div>
@@ -97,6 +89,10 @@ const mapDispatchToEvents = dispatch => {
     },
     recenterMap: coords => {
       dispatch(recenterMap(coords));
+    },
+    setSelectedValue: value => {
+      dispatch(stationSearch(value.name));
+      // dispatch(selectStation(value));
     }
   };
 };

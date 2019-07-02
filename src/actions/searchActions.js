@@ -1,4 +1,6 @@
 import * as types from "./actionTypes";
+import { recenterMap } from "./mapActions";
+import { getNearbyBikeStations } from "./getNearestStations";
 
 export const requestStationSearch = searchText => ({
   type: types.REQUEST_STATION_SEARCH,
@@ -34,10 +36,13 @@ export const stationSearch = searchText => {
       } else {
         searchResults = stations.find(s => s.terminalName === searchText);
       }
-      if (!searchResults) {
+
+      if (searchResults === undefined) {
         dispatch(noStationFound());
       } else {
         dispatch(receiveStationSearch(searchResults));
+        dispatch(recenterMap(searchResults.coords));
+        dispatch(getNearbyBikeStations(searchResults.coords, 500));
       }
     } else {
       dispatch(noSearchTerm());
