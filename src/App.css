@@ -32,7 +32,7 @@
     margin-top: 30px;
     padding-top: 30px;
     padding-left: 2%;
-    height: calc(100%-30px);
+    height: calc(100% - 30px);
     width: calc(30%);
     overflow: auto;
   }
