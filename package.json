@@ -42,7 +42,7 @@
     "test": "react-scripts test --env=jsdom",
     "eject": "react-scripts eject",
     "storybook": "start-storybook",
-    "lint:pretty": "prettier --check 'src/**/*.js'"
+    "lint:pretty": "prettier --check 'src/**/*.{js,jsx}'"
   },
   "jest": {
     "collectCoverageFrom": [
