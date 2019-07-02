@@ -1,2 +1,1 @@
-
-export const bikeStation = (state) => state.bikeStations
+export const bikeStation = state => state.bikeStations;

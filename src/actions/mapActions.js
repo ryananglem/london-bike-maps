@@ -1,11 +1,11 @@
-import * as types from './actionTypes'
+import * as types from "./actionTypes";
 
-export const recenterMap = (coords) => ({
-    type: types.RECENTER_MAP,
-    coords
+export const recenterMap = coords => ({
+  type: types.RECENTER_MAP,
+  coords
 });
 
-export const zoomMap = (zoom) => ({
-    type: types.ZOOM_MAP,
-    zoom
+export const zoomMap = zoom => ({
+  type: types.ZOOM_MAP,
+  zoom
 });

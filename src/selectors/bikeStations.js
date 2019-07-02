@@ -1,2 +1,1 @@
-
-export const nearbyBikeStation = (state) => state.nearbyBikeStations
+export const nearbyBikeStation = state => state.nearbyBikeStations;
