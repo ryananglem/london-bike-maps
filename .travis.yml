@@ -18,5 +18,6 @@ addons:
       secure: M64jR1YC+pgn7kgeicwoAfJhcoFryfybU6HMc9F+MwKSUaNsoLHeuRwOV5V93B4utuybnjwFVoni9HHMdVe1cSDodoKKa+nYxycjX0nOhIsadJB3Rc0MHoqqPJiQyGko6DupE9m55U06v9rU44mK4cqJdmFoiWAAn2VzlOACZd0c7Fl+FoGWqBn7PobjJflEojXp9Ivwg9nJ0C+hXkHLgqmyTm1DLr8Nxu/xmuYt8qb05YYMXm588har8xaMHIXfr/QGk5V3YLXn5SGW2i12zJd1rPP5GN9DWRun2TCc5SLYgYcl5hkJ/0ekCwLEllloVgbJ9qLeIugFW6JlcneBnG/cJA7tGpS6pTTIIL6dZEP9hmKPaJzfVMWU1eeeMRshHKBQD7KeVGBxbR+avjewW2DxH/qUJLPfNq3s5S2elBVbQNVHodpD3/0UsnEIc2nvI2FOQ9vMcfYTYswXMTkSJW+Qr/MjzkhMutaWFrI4zpkpHEgqiiBgIazOOr2I+7cNxUP6qDGkBfewbbseJ000giral0p574nM6dLx6KIQ0T5s+FY8BmI0gx7OHK35rzIGXKpHTh9Unf32JE3ZfDuFTeBFrP1ddhEdlge1+9H0bjupjt36U05HaCJwyK9m8/W99qg5gLHeWwnarqBRevP1ZlYNPuoObpyjrovgL8kDM0I=
 script:
   - yarn build
+  - yarn lint:pretty
   - yarn test -- --coverage  
   - sonar-scanner
