@@ -11,7 +11,13 @@ const mapReducer = (state = initialState, action) => {
     switch (action.type) {
         case types.RECENTER_MAP:
             return {
+                ...state,
                 coords: action.coords,
+            }
+        case types.ZOOM_MAP:
+            return {
+                ...state,
+                zoom: action.zoom,
             }
         default:
             return state

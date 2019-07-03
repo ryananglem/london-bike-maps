@@ -16,9 +16,7 @@ class Map extends Component {
         this.onCloseClicked = this.onCloseClicked.bind(this)
         this.toggleInfoWindow = this.toggleInfoWindow.bind(this)
         this.changeZoom = this.changeZoom.bind(this)
-        this.changeBounds = this.changeBounds.bind(this)
         this.recenterMap = this.recenterMap.bind(this)
-        this.onDblClick = this.onDblClick.bind(this)
         this.onMapCreated = this.onMapCreated.bind(this)
     }
     changeZoom() {
@@ -28,10 +26,6 @@ class Map extends Component {
     }
     recenterMap(coords) {
         this.props.recenterMap(coords)
-    }
-    changeBounds() {
-        //console.log('change bounds')
-        this.props.changeBounds()
     }
     toggleInfoWindow(bikeStationId) {
         const bikeStation = this.props.stations.find(
@@ -45,13 +39,6 @@ class Map extends Component {
         })
     }
 
-    onDblClick(e) {
-        //console.log({ lat: e.latLng.lat(), lng: e.latLng.lng() })
-        /*this.recenterMap( {
-            lat: 51.506451,
-            lng: -0.170279
-        })*/
-    }
     onCloseClicked(stationId) {
         this.toggleInfoWindow(stationId)
     }
@@ -59,9 +46,10 @@ class Map extends Component {
         this.toggleInfoWindow(stationId)
     }
     renderStationMarkers() {
-        return this.props.stations.map(station => {
-            const percentage = this.props.percentage(this.props.filter, station)
-            const colour = this.props.displayColour(percentage)
+        const { filter, displayColour, percentage, stations } = this.props
+        return stations.map(station => {
+            const displayPercentage = percentage(filter, station)
+            const colour = displayColour(displayPercentage)
             return (
                 <Marker
                     key={station.id}
@@ -76,16 +64,23 @@ class Map extends Component {
         })
     }
     renderStationInfoWindows() {
-        return this.props.stations.map(station => {
-            const percentage = this.props.percentage(this.props.filter, station)
-            const colour = this.props.displayColour(percentage)
+        const {
+            stations,
+            percentage,
+            filter,
+            displayColour,
+            infoWindowText,
+        } = this.props
+        return stations.map(station => {
+            const displayPercentage = percentage(filter, station)
+            const colour = displayColour(percentage)
             if (!station.infoWindowIsOpen) return null
             let stationInfo = ReactDOMServer.renderToStaticMarkup(
                 <StationInfo
-                    filter={this.props.filter}
-                    text={this.props.infoWindowText}
+                    filter={filter}
+                    text={infoWindowText}
                     displayColour={colour}
-                    percentage={percentage}
+                    percentage={displayPercentage}
                     station={station}
                 />
             )
@@ -103,24 +98,25 @@ class Map extends Component {
     }
 
     render() {
+        const { centre, loadingMessage } = this.props
         return (
             <Gmaps
                 ref={googleMap => (this.gmap = googleMap)}
                 width={'100%'}
                 height={'100%'}
-                lat={this.props.centre.lat}
-                lng={this.props.centre.lng}
+                lat={centre.lat}
+                lng={centre.lng}
                 zoom={14}
                 onZoomChanged={this.changeZoom}
                 onBoundsChanged={this.changeBounds}
-                loadingMessage={this.props.loadingMessage || 'Loading...'}
+                loadingMessage={loadingMessage || 'Loading...'}
                 params={params}
                 onMapCreated={this.onMapCreated}
             >
                 >
                 <Circle
-                    lat={this.props.centre.lat}
-                    lng={this.props.centre.lng}
+                    lat={centre.lat}
+                    lng={centre.lng}
                     radius={500}
                     strokeWeight={1}
                     strokeColor={'#FF0000'}
@@ -142,7 +138,6 @@ Map.propTypes = {
     toggleInfoWindow: PropTypes.func.isRequired,
     infoWindowText: PropTypes.object.isRequired,
     changeZoom: PropTypes.func,
-    changeBounds: PropTypes.func,
     recenterMap: PropTypes.func,
     filter: PropTypes.string.isRequired,
     displayColour: PropTypes.func.isRequired,

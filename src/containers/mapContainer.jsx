@@ -31,9 +31,6 @@ class MapContainer extends Component {
             ? 'warning'
             : 'success'
     }
-    changeBounds = coords => {
-        //this.props.changeBounds()
-    }
     changeZoom = zoom => {
         this.props.zoomMap(zoom)
     }
@@ -75,36 +72,28 @@ class MapContainer extends Component {
 }
 const mapStateToProps = state => {
     const { root } = state
-    const { bikeStation, map, zoom, filter, search } = root
+    const { bikeStation, map, filter, search } = root
     const { stations, isFetchingStations, error } = bikeStation
     const { searchResults } = search
-    const { coords } = map
-    const { level } = zoom
+    const { coords, zoom } = map
     const { value } = filter
     return {
         isFetchingStations,
         stations,
         error,
         coords,
-        level,
+        zoom,
         filterValue: value,
         searchResults,
     }
 }
 const mapDispatchToEvents = dispatch => {
     return {
-        toggleBikeStationInfoWindow: bikeStation => {
-            dispatch(toggleBikeStationInfoWindow(bikeStation))
-        },
-        getAllBikeStations: () => {
-            dispatch(getAllBikeStations())
-        },
-        recenterMap: coords => {
-            dispatch(recenterMap(coords))
-        },
-        zoomMap: zoom => {
-            dispatch(zoomMap(zoom))
-        },
+        toggleBikeStationInfoWindow: bikeStation =>
+            dispatch(toggleBikeStationInfoWindow(bikeStation)),
+        getAllBikeStations: () => dispatch(getAllBikeStations()),
+        recenterMap: coords => dispatch(recenterMap(coords)),
+        zoomMap: zoom => dispatch(zoomMap(zoom)),
     }
 }
 export default withTranslate(
