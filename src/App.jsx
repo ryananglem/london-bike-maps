@@ -3,7 +3,7 @@ import './App.css'
 import { connect } from 'react-redux'
 import { withTranslate, IntlActions } from 'react-redux-multilingual'
 import { filterByParks, filterByBikes } from './actions/filterActions'
-import { stationSearch /*, selectStation */ } from './actions/searchActions'
+import { stationSearch } from './actions/searchActions'
 import { recenterMap } from './actions/mapActions'
 import * as constants from './config/constants'
 
