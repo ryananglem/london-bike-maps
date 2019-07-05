@@ -43,7 +43,7 @@ class MapContainer extends Component {
         }
         if (this.props.stations === undefined) return null
         return (
-            <div className="map-container">
+            <div data-testid="map-page" className="map-container">
                 <div className="map-body">
                     <Map
                         centre={{

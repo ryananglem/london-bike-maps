@@ -1,0 +1,6 @@
+{
+    "baseUrl": "http://ValueSetOnCommandLine",
+    "fixturesFolder": "test/mocks",
+    "testFiles": "*.js",
+    "projectId": "4byiro"
+}

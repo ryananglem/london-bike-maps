@@ -15,7 +15,7 @@ class AboutContainer extends Component {
             writtenBy: this.props.translate('writtenBy'),
             technology: this.props.translate('technology'),
         }
-        return <About text={translatedText} />
+        return <About data-testid="about-page" text={translatedText} />
     }
 }
 const mapStateToProps = state => {

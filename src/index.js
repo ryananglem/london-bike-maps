@@ -16,20 +16,28 @@ import translations from './translations'
 import { IntlReducer as Intl, IntlProvider } from 'react-redux-multilingual'
 
 import { createStore, compose, combineReducers, applyMiddleware } from 'redux'
+import { composeWithDevTools } from 'redux-devtools-extension/developmentOnly'
 import { Provider } from 'react-redux'
 import thunk from 'redux-thunk'
 
 import root from './reducers/rootReducer'
 const reducers = combineReducers(Object.assign({}, { Intl, root, routing }))
 
-const store = createStore(
-    reducers,
-    compose(
-        applyMiddleware(thunk),
-        window.__REDUX_DEVTOOLS_EXTENSION__ &&
-            window.__REDUX_DEVTOOLS_EXTENSION__()
+let store
+if (
+    process.env === 'development' &&
+    window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__
+) {
+    store = createStore(
+        reducers,
+        compose(
+            applyMiddleware(thunk),
+            composeWithDevTools()
+        )
     )
-)
+} else {
+    store = createStore(reducers, compose(applyMiddleware(thunk)))
+}
 
 const history = syncHistoryWithStore(createBrowserHistory(), store)
 

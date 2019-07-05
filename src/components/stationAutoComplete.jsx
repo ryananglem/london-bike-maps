@@ -42,17 +42,23 @@ class StationAutoComplete extends Component {
             onChange: onChange,
         }
         return (
-            <Autosuggest
-                suggestions={suggestions}
-                onSuggestionsFetchRequested={this.onSuggestionsFetchRequested}
-                onSuggestionsClearRequested={this.onSuggestionsClearRequested}
-                onSuggestionSelected={(_, { suggestion }) =>
-                    setSelectedValue(suggestion)
-                }
-                getSuggestionValue={getSuggestionValue}
-                renderSuggestion={renderSuggestion}
-                inputProps={inputProps}
-            />
+            <span data-testid="terminal-search-input">
+                <Autosuggest
+                    suggestions={suggestions}
+                    onSuggestionsFetchRequested={
+                        this.onSuggestionsFetchRequested
+                    }
+                    onSuggestionsClearRequested={
+                        this.onSuggestionsClearRequested
+                    }
+                    onSuggestionSelected={(_, { suggestion }) =>
+                        setSelectedValue(suggestion)
+                    }
+                    getSuggestionValue={getSuggestionValue}
+                    renderSuggestion={renderSuggestion}
+                    inputProps={inputProps}
+                />
+            </span>
         )
     }
 }
